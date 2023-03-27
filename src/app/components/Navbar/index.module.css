@@ -1,0 +1,58 @@
+.NavbarContainer{
+    position: fixed;
+    top: 50%;
+    left: 0;
+    z-index: 100;
+}
+.Navbar{
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    padding: 20px;
+    background: rgba(255, 255, 255, 0.8);
+    border-radius: 0 16px 16px 0;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+    backdrop-filter: blur(5px);
+    -webkit-backdrop-filter: blur(5px);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    width: 230px;
+}
+.NavbarToggle{
+    position: absolute;
+    right: 0;
+    top: 50%;
+    aspect-ratio: 1;
+    height: 30px;
+    width: auto;
+    background: white;
+    padding: 5px;
+    border-radius: 100%;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+    transition: height ease-in 200ms;
+    cursor: pointer;
+}
+.NavbarToggle:hover{
+    height: 40px;
+}
+.NavbarToggle>svg{
+    width: 100%;
+    height: 100%;
+}
+
+.Link{
+    font-family: "Roboto Light", sans-serif;
+    font-size: 18px;
+    text-transform: uppercase;
+    text-decoration: none;
+    color: gray;
+    transition: color,font-weight,font-size ease-in-out 500ms;
+}
+.Link>span{
+    display: block;
+    background: #821914;
+    height: 3px;
+    transition: width ease-in 500ms;
+}
+.Link:hover{
+    font-weight: bold;
+}

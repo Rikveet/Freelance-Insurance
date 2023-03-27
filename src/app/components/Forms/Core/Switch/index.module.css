@@ -1,0 +1,68 @@
+.Group {
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    position: relative;
+    gap: 10px;
+    width: 100%;
+    max-width: 220px;
+    min-height: 50px;
+}
+
+.Label {
+    top: 0;
+    background: rgba(22, 41, 106, 1);
+    text-align: center;
+    box-sizing: border-box;
+    z-index: 2;
+    font-size: 12px;
+    text-overflow: ellipsis;
+    overflow: hidden;
+}
+
+.Switch {
+    display: flex;
+    flex-direction: row;
+    height: 50px;
+    width: 100%;
+
+    background: transparent;
+    color: white;
+    border: 2px rgba(255, 255, 255, 0.5) solid;
+    padding: 0;
+    border-radius: 30px;
+    cursor: pointer;
+    transition: all ease-in 200ms;
+    overflow: hidden;
+}
+.Switch:hover {
+    border-color: rgba(255, 255, 255, 1);
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 1);
+    backdrop-filter: blur(5px);
+    -webkit-backdrop-filter: blur(5px);
+}
+
+
+.Text {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-family: 'karla', sans-serif;
+    text-transform: capitalize;
+    margin: 0;
+    font-size: 15px;
+}
+
+.Icon {
+    height: 100%;
+    aspect-ratio: 1;
+    width: auto;
+    background: rgba(2, 4, 74, 0.5);
+    backdrop-filter: blur(5px);
+    border-radius: 100%;
+    box-sizing: border-box;
+    position: relative;
+    overflow: hidden;
+    z-index: 1;
+}

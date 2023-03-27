@@ -1,0 +1,135 @@
+.Container{
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: row;
+    height: auto;
+    width: 100%;
+    background-color: white;
+    border: #0F1EBB solid;
+    border-width: 5px 0;
+    padding: 20px 0;
+}
+.ImageContainer{
+    width: 20%;
+    min-width: fit-content;
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    padding: 50px;
+}
+.Image{
+    width: 100%;
+    height: 100%;
+    max-width: 650px;
+    min-width: 500px;
+    border-radius: 10px;
+    -webkit-box-shadow: 0 0 30px 10px rgba(0,0,0,0.75);
+    -moz-box-shadow: 0 0 30px 10px rgba(0,0,0,0.75);
+    box-shadow: 0 0 20px 10px rgba(0,0,0,0.30);
+}
+.InfoContainer{
+    width: 50%;
+    height: 100%;
+    gap: 20px;
+    max-width: 400px;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: space-evenly;
+}
+.Name{
+    font-family: karla, sans-serif;
+    font-size: 16px;
+    color: #821914;
+    font-weight: bolder;
+    text-transform: uppercase;
+}
+.Specialization{
+    font-family: 'Vidaloka', sans-serif;
+    font-size: 66px;
+    color: #0F1EBB;
+    font-weight: bolder;
+    text-transform: uppercase;
+}
+.BorderLine{
+    height: 2px;
+    width: 20%;
+    max-width: 100px;
+    background-color: #821914;
+}
+.Info{
+    font-family: 'Hind', sans-serif;
+    font-size: 15px;
+}
+.Button{
+    font-family: 'karla', sans-serif;
+    font-size: 16px;
+    font-weight: bold;
+    color: white;
+    text-transform: uppercase;
+    background-color: #0F1EBB;
+    transition: background-color ease-in 200ms;
+    border: none;
+    height: 60px;
+    border-radius: 10px;
+    padding: 0 20px;
+    cursor: pointer;
+}
+.Button:hover{
+    background-color: #821914;
+}
+
+@media screen and (max-width: 1200px){
+    .Image{
+        max-width: 500px;
+    }
+    .Specialization{
+        font-size: 40px;
+    }
+   .InfoContainer{
+       max-width: 300px;
+   }
+
+}
+@media screen and (max-width: 900px){
+    .Image{
+        min-width: 300px;
+        max-width: 400px;
+    }
+    .Specialization{
+        font-size: 20px;
+    }
+    .InfoContainer{
+        max-width: 300px;
+    }
+}
+@media screen and (max-width: 800px){
+
+    .Image{
+        min-width: 200px;
+        max-width: 350px;
+    }
+    .Specialization{
+        font-size: 20px;
+    }
+    .InfoContainer{
+        width: 250px;
+    }
+}
+@media screen and (max-width: 700px){
+
+    .Image{
+        min-width: 200px;
+        max-width: 250px;
+    }
+
+}@media screen and (max-width: 640px){
+
+    .Container{
+        flex-direction: column;
+    }
+
+}
+

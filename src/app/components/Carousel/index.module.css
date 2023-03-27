@@ -1,0 +1,120 @@
+.Container{
+    display: block;
+    width: 100%;
+    height: 600px;
+    position: relative;
+    overflow: hidden;
+    background: white;
+    padding: 10px 0;
+}
+
+.Carousel{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: 100%;
+    box-sizing: border-box;
+}
+
+.Image{
+    position: absolute;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    max-width: 1200px;
+    width: 100%;
+    height: 100%;
+    z-index: 1;
+}
+.Image>div{
+    position: relative;
+    width: 100%;
+    height: auto;
+    -webkit-box-shadow: 0 0 30px 5px rgba(0,0,0,0.75);
+    -moz-box-shadow: 0 0 30px 5px rgba(0,0,0,0.75);
+    box-shadow: 0 0 30px 5px rgba(0, 0, 0, 0.75);
+    border-radius: 15px;
+    overflow: hidden;
+    aspect-ratio: 12/6;
+}
+.Image>div>image{
+    object-fit: contain;
+}
+.Arrow{
+    z-index: 4;
+    position: absolute;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 40px;
+    width: auto;
+    aspect-ratio: 1;
+    top: 50%;
+    cursor: pointer;
+    background-color: white;
+    border-radius: 100%;
+    padding: 4px;
+    -webkit-box-shadow: 0 0 16px 5px rgba(0,0,0,0.75);
+    -moz-box-shadow: 0 0 16px 5px rgba(0,0,0,0.75);
+    box-shadow: 0 0 16px 5px rgba(0,0,0,0.75);
+    border: white 2px solid;
+    transition: border-color ease-in 200ms;
+
+}
+.Arrow>polyline{
+    transition: stroke ease-in 200ms;
+}
+.Arrow>svg{
+    height: 100%;
+    width: 100%;
+}
+.Arrow:hover{
+    border-color: #821914;
+}
+.Arrow:hover>polyline{
+    stroke: #821914;
+}
+.Left{
+    left: 12%;
+    rotate: 180Deg;
+    transform: translateY(50%);
+}
+.Right{
+    right: 12%;
+    transform: translateY(-50%);
+}
+@media screen and (max-width: 1024px) {
+    .Container{
+        height: 450px;
+    }
+    .Arrow{
+        height: 25px;
+    }
+}
+@media screen and (max-width: 768px) {
+    .Container{
+        height: 350px;
+    }
+    .Arrow{
+        height: 10px;
+    }
+}
+@media screen and (max-width: 425px) {
+    .Container{
+        height: 200px;
+    }
+    .Left{
+        left: 2%;
+    }
+    .Right{
+        right: 2%;
+    }
+    .Image{
+        width: 100% !important;
+    }
+    .Image>img{
+        border-radius: 0;
+    }
+}

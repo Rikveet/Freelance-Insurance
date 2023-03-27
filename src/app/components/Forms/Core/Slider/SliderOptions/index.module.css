@@ -1,0 +1,60 @@
+.Applicants{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: flex-start;
+    width: 100%;
+    height: 30px;
+    gap: 10px;
+    position: relative;
+}
+.Icon{
+    height: 30px;
+    aspect-ratio: 1;
+    width: auto;
+    color: white;
+    background: transparent;
+    border: white 2px solid;
+    padding: 2px;
+    box-sizing: border-box;
+    border-radius: 100%;
+    font-family: 'karla', sans-serif;
+    font-weight: bold;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background-color ease-in 200ms;
+    position: relative;
+}
+.Icon:hover{
+    background: #16296a;
+}
+.ErrorIcon{
+    position: absolute;
+    height: 20px;
+    aspect-ratio: 1;
+    width: auto;
+    transform: translate(50%,-50%);
+    top:0;
+    right:0;
+    background-color: white;
+    padding: 0;
+    color: #821914;
+    border-radius: 100%;
+}
+.IconDisabled{
+    cursor: not-allowed;
+    color: grey;
+    border-color: grey;
+}
+.IconDisabled:hover{
+    background-color: transparent;
+}
+
+@media screen and (max-width: 350px) {
+    .Applicants{
+        height: fit-content;
+        width: 190px;
+        padding-right: 40px;
+        flex-wrap: wrap;
+    }
+}

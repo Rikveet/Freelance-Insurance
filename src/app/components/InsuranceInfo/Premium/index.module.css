@@ -1,0 +1,88 @@
+.Container {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-evenly;
+    height: 20%;
+    max-height: 30px;
+    width: 100%;
+    padding-top: 20px;
+    padding-bottom: 20px;
+    background: #0F1EBB;
+    border-bottom: #821914 solid 5px;
+}
+
+.Text {
+    font-family: Roboto, sans-serif;
+    font-size: 40px;
+    font-weight: bolder;
+    text-transform: uppercase;
+    color: white;
+}
+
+.ButtonContainer {
+    display: flex;
+    height: 100%;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
+}
+
+.Button {
+    font-family: Roboto, sans-serif;
+    font-size: 15px;
+    width: 300px;
+    height: 50px;
+    padding: 10px;
+    text-transform: uppercase;
+    background-color: #821914;
+    border: none;
+    border-radius: 10px;
+    color: white;
+    cursor: pointer;
+    transition: scale ease-in 200ms;
+}
+
+.Button:hover {
+    scale: 1.05;
+}
+
+@media screen and (max-width: 1024px) {
+    .Text {
+        font-size: 30px;
+    }
+
+    .Button {
+        width: 200px;
+        gap: 10px;
+    }
+}
+
+@media screen and (max-width: 768px) {
+    .Text {
+        font-size: 20px;
+    }
+    .ButtonContainer{
+        gap: 5px;
+    }
+    .Button {
+        width: 200px;
+        font-size: 14px;
+    }
+}
+
+@media screen and (max-width: 630px) {
+    .Container{
+        flex-direction: column;
+        max-height: fit-content;
+        gap: 10px;
+    }
+    .ButtonContainer{
+        max-height: fit-content;
+    }
+    .Button {
+        width: 150px;
+        font-size: 14px;
+    }
+}

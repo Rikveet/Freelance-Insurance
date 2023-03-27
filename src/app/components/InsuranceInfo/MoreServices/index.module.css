@@ -1,0 +1,8 @@
+.Container{
+    width: 100%;
+    height: fit-content;
+    background: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}

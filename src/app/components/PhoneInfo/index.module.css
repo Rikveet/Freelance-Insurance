@@ -1,0 +1,105 @@
+.Container{
+    border: #0F1EBB solid;
+    border-width: 10px 0;
+    position: relative;
+    overflow: hidden;
+    width: 100%;
+    height: 400px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+    align-items: center;
+    z-index: 2;
+}
+.Background{
+    position: fixed;
+    width: 100%;
+    height: 100vh;
+    z-index: -2;
+    object-fit: cover;
+    top: 0;
+    left: 0;
+}
+.BackgroundFilter{
+    position: absolute;
+    height: 100%;
+    width: 100%;
+    z-index: -1;
+    background: rgba(168, 213, 255,0.7);
+    backdrop-filter: blur(1px);
+    -webkit-backdrop-filter: blur(5px);
+}
+.Text{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: flex-end;
+}
+.TextTop{
+    font-family: 'karla', sans-serif;
+    font-size: 20px;
+    margin: 0;
+    color: #d0281e;
+    text-transform: uppercase;
+    font-weight: bolder;
+}
+.TextMiddle{
+    font-family: 'Vidaloka', sans-serif;
+    font-size: 66px;
+    margin: 0;
+    text-transform: capitalize;
+    color: #0F1EBB;
+}
+.TextEnd{
+    font-family: 'Vidaloka', sans-serif;
+    font-size: 66px;
+    margin: 0;
+    text-transform: capitalize;
+    color: #0F1EBB;
+}
+.Button{
+    height: 70px;
+    padding: 0 40px;
+    font-family: karla, sans-serif;
+    font-size: 19px;
+    background: #0F1EBB;
+    color: white;
+    border: none;
+    border-radius: 10px;
+    font-weight: bolder;
+    transition: all ease-in 250ms;
+    cursor: pointer;
+}
+.Button:hover{
+    background: #821914;
+    scale: 1.1;
+}
+
+@media screen and (max-width: 970px) {
+    .Container{
+        height: 300px;
+    }
+    .TextTop{
+        font-size: 15px;
+    }
+    .TextMiddle{
+        font-size: 40px;
+    }
+    .TextEnd{
+        font-size: 40px;
+    }
+    .Button{
+        font-size: 15px;
+    }
+}
+@media screen and (max-width: 650px) {
+    .Container{
+        height: 250px;
+        flex-direction: column;
+        justify-content: space-evenly;
+    }
+    .Text{
+        justify-content: center;
+        align-items: center;
+    }
+}
