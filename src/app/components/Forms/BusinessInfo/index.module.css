@@ -23,13 +23,13 @@
     flex-direction: column;
     align-items: flex-start;
     justify-content: center;
-    font-family: 'Vidaloka', sans-serif;
+    font-family: var(--vidaloka), sans-serif;
     text-transform: uppercase;
     color: white;
     font-size: 30px;
 }
 .Heading>span{
-    font-family: 'karla', sans-serif;
+    font-family: var(--karla), sans-serif;
     color: rgba(255, 255, 255, 0.7);
     font-size: 15px;
 }
@@ -69,7 +69,7 @@
     height: auto;
 }
 .LinkText{
-    font-family: 'karla', sans-serif;
+    font-family: var(--karla), sans-serif;
     font-size: 15px;
 }
 .SocialLinks{

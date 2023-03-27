@@ -20,7 +20,7 @@ export type Link = {
 
 const ImageView = ({url}: { url?: string }) => {
     return (
-        url ? <Image className={styles.CardMedia} src={url} alt={'Instagram post'} height={250} width={250}/> : <></>
+        url ? <Image className={styles.CardMedia} src={url} alt={'Instagram post'} height={250} width={250} loading={'eager'}/> : <></>
     )
 }
 

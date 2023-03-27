@@ -85,6 +85,7 @@ const HomeCarousel = () => {
                                 src={`/images/home/${getImage(pointer - 1).fileName}.jpg`}
                                 alt={getImage(pointer - 1).alt}
                                 fill={true}
+                                loading={'eager'}
                                 unoptimized/>
                         </div>
                     </motion.div>
@@ -108,6 +109,8 @@ const HomeCarousel = () => {
                                 }}
                                 src={`/images/home/${getImage(pointer).fileName}.jpg`} alt={getImage(pointer).alt}
                                 fill={true}
+                                loading={'eager'}
+                                priority={true}
                                 unoptimized/>
                         </div>
                     </motion.div>
@@ -135,6 +138,7 @@ const HomeCarousel = () => {
                                 src={`/images/home/${getImage(pointer + 1).fileName}.jpg`}
                                 alt={getImage(pointer + 1).alt}
                                 fill={true}
+                                loading={'eager'}
                                 unoptimized/>
                         </div>
                     </motion.div>

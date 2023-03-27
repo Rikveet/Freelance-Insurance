@@ -36,7 +36,7 @@
     align-items: flex-end;
 }
 .TextTop{
-    font-family: 'karla', sans-serif;
+    font-family: var(--karla), sans-serif;
     font-size: 20px;
     margin: 0;
     color: #d0281e;
@@ -44,14 +44,14 @@
     font-weight: bolder;
 }
 .TextMiddle{
-    font-family: 'Vidaloka', sans-serif;
+    font-family: var(--vidaloka), sans-serif;
     font-size: 66px;
     margin: 0;
     text-transform: capitalize;
     color: #0F1EBB;
 }
 .TextEnd{
-    font-family: 'Vidaloka', sans-serif;
+    font-family: var(--vidaloka), sans-serif;
     font-size: 66px;
     margin: 0;
     text-transform: capitalize;
@@ -60,7 +60,7 @@
 .Button{
     height: 70px;
     padding: 0 40px;
-    font-family: karla, sans-serif;
+    font-family: var(--karla), sans-serif;
     font-size: 19px;
     background: #0F1EBB;
     color: white;

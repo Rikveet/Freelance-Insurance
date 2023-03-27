@@ -44,7 +44,7 @@ const Card = ({id, image, title, desc, button}: props) => {
                      }
                  }}>
                 <div className={styles.ImageContainer}>
-                    <Image className={styles.Image} src={image.fileName} alt={image.alt} width={200} height={200}/>
+                    <Image className={styles.Image} src={image.fileName} alt={image.alt} width={200} height={200} loading={'eager'}/>
                     <p className={styles.ImageDesc}>{image.desc}</p>
                 </div>
                 <p className={styles.Title}>{title}</p>

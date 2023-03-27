@@ -29,7 +29,7 @@
 .Title {
     display: flex;
     width: 100%;
-    font-family: 'Hind', sans-serif;
+    font-family: var(--hind), sans-serif;
     font-size: 30px;
     justify-content: center;
     align-items: center;
@@ -72,7 +72,7 @@
 }
 .Label {
     text-transform: uppercase;
-    font-family: 'karla', sans-serif;
+    font-family: var(--karla), sans-serif;
     font-size: 14px;
     color: white;
     position: absolute;
@@ -105,13 +105,13 @@
     background-color: rgba(2, 4, 74);
 }
 .Select>option{
-    font-family: 'karla', sans-serif;
+    font-family: var(--karla), sans-serif;
     color: white;
 }
 
 
 .Error{
-    font-family: 'karla', sans-serif;
+    font-family: var(--karla), sans-serif;
     font-size: 11px;
     color: white;
     position: absolute;
@@ -133,7 +133,7 @@
     height: 50px;
     width: 100px;
     font-size: 20px;
-    font-family: 'karla', sans-serif;
+    font-family: var(--karla), sans-serif;
     background: transparent;
     border: white 2px solid;
     border-radius: 10px;
@@ -145,7 +145,7 @@
 .SubmitButton>input{
     background: transparent;
     font-size: 20px;
-    font-family: 'karla', sans-serif;
+    font-family: var(--karla), sans-serif;
     height: 100%;
     width: 100%;
     color: white;

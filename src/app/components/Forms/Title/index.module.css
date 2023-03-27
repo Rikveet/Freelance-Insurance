@@ -14,7 +14,7 @@
     height: fit-content;
 }
 .Title>div{
-    font-family: 'Bungee Shade', sans-serif;
+    font-family: var(--bungeeShade), sans-serif;
     font-size: 55px;
     color: white;
     text-transform: uppercase;

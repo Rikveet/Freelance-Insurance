@@ -41,9 +41,10 @@
     align-items: center;
     width: auto;
     height: auto;
-    min-width: 100%;
+    max-width: 100%;
     aspect-ratio: 1;
     object-fit: cover;
+    box-sizing: border-box;
     border-radius: 20px;
     box-shadow: 0 0 10px 0 rgba(0,0,0,0.5);
 }
@@ -81,7 +82,7 @@
     scroll-behavior: smooth;
     margin: 0;
     padding: 10px 0;
-    font-family: 'karla', sans-serif;
+    font-family: var(--karla), sans-serif;
     font-weight: bolder;
     font-size: 15px;
 }
@@ -104,7 +105,7 @@
 }
 .TimeStamp{
     color: gray;
-    font-family: 'karla', sans-serif;
+    font-family: var(--karla), sans-serif;
     font-weight: bolder;
     font-size: 14px;
     margin-bottom: 0;
