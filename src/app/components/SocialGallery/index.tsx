@@ -6,6 +6,7 @@ import axios from "axios";
 
 const getLinks = async () => {
     const results =  await axios.get('/api/instaLinks').then(data => data.data.data as Link[]).catch(_ => undefined)
+    console.log(results)
     if (!results) {
         return []
     }
