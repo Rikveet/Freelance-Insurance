@@ -26,6 +26,15 @@
     box-sizing: border-box;
     overflow: hidden;
 }
+.FormTitle{
+    align-self: flex-start;
+    margin: 0 0 -15px 0;
+    font-family: var(--hind), sans-serif;
+    font-size: 14px;
+    padding: 10px 0 0 30px;
+    text-transform: capitalize;
+    color: rgba(160, 160, 160, 0.75);
+}
 .Title {
     display: flex;
     width: 100%;
@@ -39,7 +48,7 @@
 .Inputs {
     display: flex;
     min-width: 400px;
-    padding: 25px;
+    padding: 25px 25px 25px 25px;
     min-height: fit-content;
     box-sizing: border-box;
     position: relative;
@@ -180,6 +189,9 @@
 @media screen and (max-width: 550px) {
     .Form{
         width: 350px;
+    }
+    .FormTitle{
+        padding-left: 40px;
     }
     .Inputs{
         min-width: 300px;

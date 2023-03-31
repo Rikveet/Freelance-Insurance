@@ -6,6 +6,7 @@ import {props} from "@/app/components/Forms/Services/DataTypes";
 import InputContainer from "../Core/InputContainer";
 import Submit from "@/app/components/Forms/Core/Submit";
 import {Additional_Info_Validation, Age_Validation, Switch_Validation} from "@/app/components/Forms/Core/Validation";
+import sharedStyles from "@/app/components/Forms/Core/styles.module.css";
 
 export type Data = {
     age: number,
@@ -27,6 +28,7 @@ const TFSA = ({exit, onSubmit}: props) => {
               onSubmit={handleSubmit(() => {
             onSubmit(watch())
         })}>
+            <p className={sharedStyles.FormTitle}>Information about the person</p>
             <InputContainer direction={'col'}>
                 <Input type={'number'}
                        label={'Age'}

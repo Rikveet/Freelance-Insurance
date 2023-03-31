@@ -15,6 +15,7 @@ import {
     Name_Validation,
     Switch_Validation
 } from "@/app/components/Forms/Core/Validation";
+import sharedStyles from "@/app/components/Forms/Core/styles.module.css";
 
 export type Data = {
     'child info': {
@@ -30,7 +31,6 @@ const RESP = ({exit, onSubmit}: props) => {
         {
             defaultValues: {
                 "child info": [{
-                    name: '',
                     'province ontario': 'no'
                 }]
             },
@@ -76,6 +76,7 @@ const RESP = ({exit, onSubmit}: props) => {
                         }
                     }))
                 }/>
+            <p className={sharedStyles.FormTitle}>Information about the person</p>
             <Slider showIndex={selectedIndex} length={fields.length}>
                 {
                     fields.map((field, index) => {

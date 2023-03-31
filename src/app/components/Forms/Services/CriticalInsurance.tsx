@@ -12,6 +12,7 @@ import {
     Select_Group_Validation,
     Switch_Validation
 } from "@/app/components/Forms/Core/Validation";
+import sharedStyles from "@/app/components/Forms/Core/styles.module.css";
 
 export type Data = {
     age: number,
@@ -34,6 +35,7 @@ const CriticalInsurance = ({exit, onSubmit}: props) => {
         <form key={'critical_insurance'} onSubmit={handleSubmit(() => {
             onSubmit(watch())
         })}>
+            <p className={sharedStyles.FormTitle}>Information about the person</p>
             <InputContainer direction={'col'}>
                 <Input type={'number'}
                        label={'Age'}

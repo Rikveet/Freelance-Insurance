@@ -19,6 +19,7 @@ import {
     Select_Group_Validation,
     Switch_Validation
 } from "@/app/components/Forms/Core/Validation";
+import sharedStyles from "@/app/components/Forms/Core/styles.module.css";
 
 export type Data = {
     'parent/grandparent info': {
@@ -36,7 +37,6 @@ const SuperVisaInsurance = ({exit, onSubmit}: props) => {
         {
             defaultValues: {
                 "parent/grandparent info": [{
-                    name: '',
                     sex: 'male',
                     'pre medical condition': 'no',
                     'recent medicine changes': 'no'
@@ -88,6 +88,7 @@ const SuperVisaInsurance = ({exit, onSubmit}: props) => {
                         }
                     }))
                 }/>
+            <p className={sharedStyles.FormTitle}>Information about the person</p>
             <Slider showIndex={selectedIndex} length={fields.length}>
                 {
                     fields.map((field, index) => {

@@ -26,7 +26,8 @@ export type Data = {
 const TravelInsurance = ({exit, onSubmit}: props) => {
     const {handleSubmit, watch, control, formState: {errors}} = useForm<Data>(
         {
-            defaultValues: {},
+            defaultValues: {
+            },
             mode: 'all'
         });
 
@@ -35,6 +36,7 @@ const TravelInsurance = ({exit, onSubmit}: props) => {
               onSubmit={handleSubmit(() => {
                   onSubmit(watch())
               })}>
+            <p className={sharedStyles.FormTitle}>Information about the person</p>
             <InputContainer direction={'col'}>
                 <Input type={'number'}
                        label={'Age'}

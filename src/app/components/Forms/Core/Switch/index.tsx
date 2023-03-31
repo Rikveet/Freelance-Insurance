@@ -29,7 +29,8 @@ function Switch<Name extends FieldValues, FieldType>({label, name, control, opti
                         <label className={`${styles.Label} ${sharedStyles.Label}`}>
                             {label}
                         </label>
-                        <div
+                        <button
+                            type={'button'}
                             className={styles.Switch}
                             style={isOn()?{
                                 background: 'rgba(2, 4, 74, 0.5)',
@@ -65,7 +66,7 @@ function Switch<Name extends FieldValues, FieldType>({label, name, control, opti
                                     }
                                 </AnimatePresence>
                             </motion.div>
-                        </div>
+                        </button>
                         {
                             fieldState.error &&
                             <span className={sharedStyles.Error}>

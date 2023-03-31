@@ -41,6 +41,7 @@ function Input<Name extends FieldValues, FieldType>({type, config, label, name, 
                                     cols={config.cols}
                                     maxLength={config.maxChars}
                                     {...field}
+                                    value={field.value || ''}
                                 />
                                 :
                                 <input
@@ -50,6 +51,7 @@ function Input<Name extends FieldValues, FieldType>({type, config, label, name, 
                                     }}
                                     className={`${styles.Input} ${touchedFields[field.name] ? fieldState.error ? styles.Invalid : styles.Valid : ''}`}
                                     {...field}
+                                    value={field.value || ''}
                                 />
                         }
                         {

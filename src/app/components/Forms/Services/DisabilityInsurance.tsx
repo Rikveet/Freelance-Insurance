@@ -11,6 +11,7 @@ import {
     Profession_Validation,
     Switch_Validation
 } from "@/app/components/Forms/Core/Validation";
+import sharedStyles from "@/app/components/Forms/Core/styles.module.css";
 
 export type Data = {
     age: number,
@@ -24,8 +25,8 @@ const DisabilityInsurance = ({exit, onSubmit}: props) => {
     const {handleSubmit, watch, control, formState: {errors}} = useForm<Data>(
         {
             defaultValues: {
-                'province ontario': 'no',
-                'pre medical condition': 'no'
+                'pre medical condition': 'no',
+                'province ontario': 'no'
             },
             mode: 'all'
         });
@@ -34,6 +35,7 @@ const DisabilityInsurance = ({exit, onSubmit}: props) => {
               onSubmit={handleSubmit(() => {
             onSubmit(watch())
         })}>
+            <p className={sharedStyles.FormTitle}>Information about the person</p>
             <InputContainer direction={'col'}>
                 <Input type={'number'}
                        label={'Age'}

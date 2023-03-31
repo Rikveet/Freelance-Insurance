@@ -6,6 +6,7 @@ import { props } from "./DataTypes";
 import InputContainer from "../Core/InputContainer";
 import Submit from "@/app/components/Forms/Core/Submit";
 import {Additional_Info_Validation, Age_Validation, Switch_Validation} from "@/app/components/Forms/Core/Validation";
+import sharedStyles from "@/app/components/Forms/Core/styles.module.css";
 
 export type Data = {
     age: number,
@@ -16,13 +17,16 @@ export type Data = {
 const MortgageInsurance = ({exit, onSubmit}: props) => {
     const {handleSubmit, watch, control, formState: {errors}} = useForm<Data>(
         {
-            defaultValues: {},
+            defaultValues: {
+                'province ontario': 'no'
+            },
             mode: 'all'
         });
     return (
         <form key={'mortgage_insurance'} onSubmit={handleSubmit(() => {
             onSubmit(watch())
         })}>
+            <p className={sharedStyles.FormTitle}>Information about the person</p>
             <InputContainer direction={'col'}>
                 <Input type={'number'}
                        label={'Age'}
