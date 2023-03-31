@@ -1,7 +1,10 @@
 import styles from './index.module.css';
-import {FaFacebookSquare, FaInstagramSquare, FaTwitterSquare} from "react-icons/fa";
-import {MdAddCall, MdOutgoingMail} from "react-icons/md";
-import {CiLocationOn} from "react-icons/ci";
+import Phone from "@/app/components/ContactLinks/Phone";
+import Email from "@/app/components/ContactLinks/Email";
+import Map from "@/app/components/ContactLinks/Map";
+import Instagram from "@/app/components/ContactLinks/Instagram";
+import Twitter from "@/app/components/ContactLinks/Twitter";
+import Facebook from "@/app/components/ContactLinks/Facebook";
 
 const BusinessInfo = () => (
     <div className={styles.Container}>
@@ -12,29 +15,14 @@ const BusinessInfo = () => (
             </span>
         </div>
         <div className={styles.Links}>
-            <button className={styles.Link}>
-                <MdAddCall className={styles.LinkIcon}/>
-                <p className={styles.LinkText}>
-                    +1 (416) 557-8080
-                </p>
-            </button>
-            <button className={styles.Link}>
-                <MdOutgoingMail className={styles.LinkIcon}/>
-                <p className={styles.LinkText}>
-                    shevindersidhu@gmail.com
-                </p>
-            </button>
-            <button className={styles.Link}>
-                <CiLocationOn className={styles.LinkIcon}/>
-                <p className={styles.LinkText}>
-                    Dewside Dr, Brampton
-                </p>
-            </button>
+            <Phone/>
+            <Email/>
+            <Map/>
         </div>
         <div className={styles.SocialLinks}>
-            <FaFacebookSquare className={styles.SocialLink}/>
-            <FaTwitterSquare className={styles.SocialLink}/>
-            <FaInstagramSquare className={styles.SocialLink}/>
+            <Facebook/>
+            <Instagram/>
+            <Twitter/>
         </div>
     </div>
 )

@@ -14,9 +14,9 @@ const PhoneInfo = () => {
                     you can trust.
                 </p>
             </div>
-            <button  className={style.Button}>
-                CALL TODAY 416-557-8080
-            </button>
+            <a className={style.Button} href={'tel:4265578080'}>
+                <p>CALL TODAY 416-557-8080</p>
+            </a>
         </div>
     )
 }

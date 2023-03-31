@@ -105,9 +105,9 @@ const Embed = ({linkInfo, moveToEnd, lastElement, speed}: EmbedProps) => {
         </motion.div>
     )
 }
-const Instagram = ({postLinks, speed}: { postLinks: Link[], speed: number }) => {
+const InstagramCarousel = ({postLinks, speed}: { postLinks: Link[], speed: number }) => {
     const [links, setLinks] = useState<Link[]>(postLinks);
-    const [isPlaying, setPlaying] = useState(false);
+    const [isPlaying, setPlaying] = useState(true);
     const moveToEnd = (link: Link) => {
         if (links![0].id === link.id && isPlaying) {
             const newList: Link[] = links!.slice(1, links!.length)
@@ -122,13 +122,13 @@ const Instagram = ({postLinks, speed}: { postLinks: Link[], speed: number }) => 
                 setPlaying(false)
             }}
             onMouseLeave={() => {
-                setPlaying(false)
+                setPlaying(true)
             }}
             onDragEnter={() => {
                 setPlaying(false)
             }}
             onDragExit={() => {
-                setPlaying(false)
+                setPlaying(true)
             }}
             style={{
                 ...isPlaying ? {
@@ -155,4 +155,4 @@ const Instagram = ({postLinks, speed}: { postLinks: Link[], speed: number }) => 
     )
 }
 
-export default Instagram;
+export default InstagramCarousel;

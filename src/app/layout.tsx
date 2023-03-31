@@ -12,6 +12,7 @@ export const metadata = {
     description: "Information on super visa and visitor's insurance.",
 }
 
+
 export default function RootLayout({children,}: { children: React.ReactNode }) {
     return (
         <html lang="en"

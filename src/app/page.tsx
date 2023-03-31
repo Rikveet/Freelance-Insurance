@@ -27,7 +27,7 @@ const links = [
 
 ]
 
-export default function Home() {
+function Home() {
     return (
         <CurrentSectionContext>
             <GoogleReCaptchaProvider container={{parameters: {theme: 'dark'}}}
@@ -47,3 +47,5 @@ export default function Home() {
         </CurrentSectionContext>
     )
 }
+
+export default Home

@@ -2,7 +2,7 @@
 import Section from "@/app/components/Section";
 import styles from './index.module.css';
 import {useGoogleReCaptcha} from "react-google-recaptcha-v3";
-import React, {useCallback, useState} from "react";
+import React, {createContext, useCallback, useEffect, useState} from "react";
 import axios from "axios";
 import Title from "@/app/components/Forms/Title";
 import Background from "@/app/components/Forms/Background";
@@ -24,29 +24,63 @@ import {AnimatePresence, motion} from "framer-motion";
 import slide from "../Motions/Slide";
 import sharedStyles from "@/app/components/Forms/Core/styles.module.css";
 
+export const Processing = createContext<{ isProcessing: boolean, processingResult?: boolean }>({isProcessing: false})
 const Form = () => {
     const [service, setService] = useState<Services | undefined>()
     const [userInfo, setUserInfo] = useState<UserContactInfoT>()
+    const [isProcessing, setIsProcessing] = useState(false);
+    const [processingResult, setProcessingResult] = useState<boolean>()
+    useEffect(() => {
+        if (processingResult !== undefined) {
+            const resultTimeout = setTimeout(() => {
+                setProcessingResult(undefined)
+                clearTimeout(resultTimeout)
+            }, 3000)
+        }
+    }, [processingResult])
     const {executeRecaptcha} = useGoogleReCaptcha();
     const getToken = useCallback(async (): Promise<string | undefined> => {
         if (!userInfo || !service || !executeRecaptcha) {
             return undefined
         }
-        return await executeRecaptcha(`${userInfo.email}/${service}`.replace(/[^a-zA-Z/_]/g,'_'))
+        return await executeRecaptcha(`${userInfo.email}/${service}`.replace(/[^a-zA-Z/_]/g, '_'))
             .then(r => r).catch(_ => {
                 return undefined
             });
     }, [executeRecaptcha, service, userInfo]);
-    const onSubmit = async (data: ServiceSubmitData): Promise<boolean> => {
-        console.log(userInfo, data)
+    const onSubmit = async (_data: ServiceSubmitData) => {
+        const data = {} as typeof _data;
+        Object.keys(_data).sort().forEach(
+            (key) => {
+                // @ts-ignore
+                if (Array.isArray(_data[key])) {
+                    // @ts-ignore
+                    data[key] = _data[key].map((_entry) => {
+                        const entry = {} as typeof _entry;
+                        Object.keys(_entry).sort().forEach((entry_key)=>{
+                            entry[entry_key] = _entry[entry_key]
+                        })
+                        return entry
+                    })
+                } else {
+                    // @ts-ignore
+                    data[key] = _data[key]
+                }
+
+            }
+        )
+        setIsProcessing(true)
         if (!userInfo || !service || !executeRecaptcha) {
+            setIsProcessing(false)
+            setProcessingResult(false)
             return false
         }
-        const token = '' //await getToken()
-        return await axios.post(`/api/formSubmit`, {
+        const token = await getToken()
+        setProcessingResult(await axios.post(`/api/formSubmit`, {
             token,
             service, ...userInfo, ...data,
-        }).then(r => false).catch(_ => false)
+        }).then(res => res.data?.result === 'success').catch(_ => false))
+        setIsProcessing(false)
     }
     const exit = () => {
         setService(undefined)
@@ -66,31 +100,33 @@ const Form = () => {
                                     })}
                                     transition={{duration: 0.75}}
                                     layout>
-                            {
-                                service ?
-                                    {
-                                        'super visa insurance': <SuperVisaInsurance {...{exit, onSubmit}}/>,
-                                        "visitor's insurance": <VisitorInsurance {...{exit, onSubmit}}/>,
-                                        'life insurance': <LifeInsurance {...{exit, onSubmit}}/>,
-                                        'critical illness insurance': <CriticalInsurance {...{exit, onSubmit}}/>,
-                                        'disability insurance': <DisabilityInsurance {...{exit, onSubmit}}/>,
-                                        'travel insurance': <TravelInsurance {...{exit, onSubmit}}/>,
-                                        'resp': <RESP {...{exit, onSubmit}}/>,
-                                        'rrsp': <RRSP {...{exit, onSubmit}}/>,
-                                        'tfsa': <TFSA {...{exit, onSubmit}}/>,
-                                        "international student's insurance": <InternationStudentInsurance {...{
-                                            exit,
-                                            onSubmit
-                                        }}/>,
-                                        'mortgage insurance': <MortgageInsurance {...{exit, onSubmit}}/>,
-                                    }[service] :
-                                    <UserContactInfo {...{
-                                        userInfo, onSubmit: (userInfo: UserContactInfoT, service: Services) => {
-                                            setService(service)
-                                            setUserInfo(userInfo)
-                                        }
-                                    }}/>
-                            }
+                            <Processing.Provider value={{isProcessing, processingResult}}>
+                                {
+                                    service ?
+                                        {
+                                            'super visa insurance': <SuperVisaInsurance {...{exit, onSubmit}}/>,
+                                            "visitor's insurance": <VisitorInsurance {...{exit, onSubmit}}/>,
+                                            'life insurance': <LifeInsurance {...{exit, onSubmit}}/>,
+                                            'critical illness insurance': <CriticalInsurance {...{exit, onSubmit}}/>,
+                                            'disability insurance': <DisabilityInsurance {...{exit, onSubmit}}/>,
+                                            'travel insurance': <TravelInsurance {...{exit, onSubmit}}/>,
+                                            'resp': <RESP {...{exit, onSubmit}}/>,
+                                            'rrsp': <RRSP {...{exit, onSubmit}}/>,
+                                            'tfsa': <TFSA {...{exit, onSubmit}}/>,
+                                            "international student's insurance": <InternationStudentInsurance {...{
+                                                exit,
+                                                onSubmit
+                                            }}/>,
+                                            'mortgage insurance': <MortgageInsurance {...{exit, onSubmit}}/>,
+                                        }[service] :
+                                        <UserContactInfo {...{
+                                            userInfo, onSubmit: (userInfo: UserContactInfoT, service: Services) => {
+                                                setService(service)
+                                                setUserInfo(userInfo)
+                                            }
+                                        }}/>
+                                }
+                            </Processing.Provider>
                         </motion.div>
                     </AnimatePresence>
                 </div>

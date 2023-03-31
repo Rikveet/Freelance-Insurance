@@ -14,13 +14,9 @@ type props = {
         desc: string,
     },
     title: string,
-    desc: string,
-    button: {
-        text: string,
-        onClick: Function
-    }
+    desc: string
 }
-const Card = ({id, image, title, desc, button}: props) => {
+const Card = ({id, image, title, desc}: props) => {
     const router = useRouter();
     const {section, setSection} = useContext(CurrentSection);
     const [isActive, setActive] = useState(false);
@@ -49,7 +45,7 @@ const Card = ({id, image, title, desc, button}: props) => {
                 </div>
                 <p className={styles.Title}>{title}</p>
                 <p className={styles.Desc}>{desc}</p>
-                <button className={styles.Button} onClick={() => button.onClick()}>{button.text}</button>
+                <a className={styles.Button} href={'#contact'}><p>get free quote</p></a>
             </div>
         </Fade>
     )

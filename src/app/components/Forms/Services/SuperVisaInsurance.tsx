@@ -13,14 +13,21 @@ import SliderOptions from "@/app/components/Forms/Core/Slider/SliderOptions";
 import InputContainer from "@/app/components/Forms/Core/InputContainer";
 import {props} from "@/app/components/Forms/Services/DataTypes";
 import Submit from "@/app/components/Forms/Core/Submit";
+import {
+    Additional_Info_Validation,
+    Name_Validation,
+    Select_Group_Validation,
+    Switch_Validation
+} from "@/app/components/Forms/Core/Validation";
 
 export type Data = {
     'parent/grandparent info': {
         name: string,
         sex: 'male' | 'female',
         'age group': '40-54' | '55-59' | '60-64' | '65-69' | '70-74' | '75-79' | '80-85',
-        'recent_medicine_changes': 'yes' | 'no',
-        'additional_info'?: string
+        'pre medical condition': 'yes' | 'no',
+        'recent medicine changes'?: 'yes' | 'no',
+        'z additional info'?: string
     }[]
 }
 
@@ -31,7 +38,8 @@ const SuperVisaInsurance = ({exit, onSubmit}: props) => {
                 "parent/grandparent info": [{
                     name: '',
                     sex: 'male',
-                    'recent_medicine_changes': 'no'
+                    'pre medical condition': 'no',
+                    'recent medicine changes': 'no'
                 }]
             },
             mode: 'onSubmit',
@@ -43,25 +51,20 @@ const SuperVisaInsurance = ({exit, onSubmit}: props) => {
         name: 'parent/grandparent info',
     })
     const [selectedIndex, setSelectedIndex] = useState<number>(0);
-    const [processing, setProcessing] = useState(false);
-    const _onSubmit = () => {
-        setProcessing(true)
-        onSubmit(watch()).then(res => {
-            setProcessing(false)
-            if (!res) {
-                console.log('failed')
-            }
-            console.log('success')
-        })
-    }
     return (
-        <form key={'super_visa_insurance'} onSubmit={handleSubmit(_onSubmit)}>
+        <form key={'super_visa_insurance'}
+              onSubmit={handleSubmit(() => {
+                  onSubmit(watch())
+              })}>
             <SliderOptions
                 add={{
                     Icon: IoPersonAdd,
                     disabled: watch()["parent/grandparent info"].length < 4,
                     onClick: () => {
-                        append({name: '', sex: 'male', 'age group': '40-54', 'recent_medicine_changes': 'no'})
+                        append({
+                            name: '', sex: 'male', 'age group': '40-54', 'pre medical condition': 'no',
+                            'recent medicine changes': 'no'
+                        })
                         setSelectedIndex(fields.length)
                     }
                 }}
@@ -70,7 +73,7 @@ const SuperVisaInsurance = ({exit, onSubmit}: props) => {
                     disabled: watch()['parent/grandparent info'].length > 1,
                     onClick: () => {
                         remove(selectedIndex);
-                        if (selectedIndex === watch()['parent/grandparent info'].length - 1) {
+                        if (selectedIndex >= watch()['parent/grandparent info'].length) {
                             setSelectedIndex(selectedIndex - 1)
                         }
                     }
@@ -94,19 +97,12 @@ const SuperVisaInsurance = ({exit, onSubmit}: props) => {
                                        label={'name'}
                                        name={`parent/grandparent info.${index}.name`}
                                        control={control}
-                                       rules={{
-                                           required: {value: true, message: 'Required*'},
-                                           minLength: {value: 2, message: 'Too short...'},
-                                           maxLength: {value: 20, message: 'Too long...'},
-                                           pattern: {value: /^[a-zA-Z ]*$/, message: 'Only alphabets are allowed.'}
-                                       }}
+                                       rules={Name_Validation()}
                                 />
                                 <SelectGroup label={'Select an age group'}
                                              name={`parent/grandparent info.${index}.age group`}
                                              control={control}
-                                             rules={{
-                                                 required: {value: true, message: 'Required*'},
-                                             }}
+                                             rules={Select_Group_Validation()}
                                              options={
                                                  [
                                                      {text: '40-54'},
@@ -126,50 +122,62 @@ const SuperVisaInsurance = ({exit, onSubmit}: props) => {
                                         on: {text: 'female', Icon: FaFemale, value: 'female'},
                                         off: {text: 'male', Icon: FaMale, value: 'male'}
                                     }}
-                                    rules={{
-                                        required: {value: true, message: 'Required*'},
-                                    }}
+                                    rules={Switch_Validation()}
                                 />
                                 <Switch
-                                    label={'Recent medicine changes'}
-                                    name={`parent/grandparent info.${index}.recent_medicine_changes`}
+                                    label={'pre-medical conditions'}
+                                    name={`parent/grandparent info.${index}.pre medical condition`}
                                     control={control}
                                     options={{
                                         on: {text: 'yes', value: 'yes'},
                                         off: {text: 'no', value: 'no'}
                                     }}
-                                    rules={{
-                                        required: {value: true, message: 'Required*'},
-                                    }}
+                                    rules={Switch_Validation()}
                                 />
+
                                 <AnimatePresence mode={'popLayout'} initial={false}>
-                                    {watch()["parent/grandparent info"][index]?.recent_medicine_changes === 'yes' &&
-                                        <motion.div
-                                            key={'additional_info'}
-                                            {...slide({enter: 'right', exit: 'bottom'})}
-                                            transition={{duration: 1}}
-                                        >
-                                            <Input type={'textarea'}
-                                                   config={{rows: 5, cols: 20, maxChars: 250}}
-                                                   label={'Please briefly explain the changes'}
-                                                   name={`parent/grandparent info.${index}.additional_info`}
-                                                   control={control}
-                                                   rules={{
-                                                       maxLength: {value: 250, message: 'Too long...'},
-                                                       pattern: {
-                                                           value: /^([a-zA-Z ]*[\r\n]?[a-zA-Z ]*){0,10}$/,
-                                                           message: 'Numbers, Special characters or Too many new lines are not allowed'
-                                                       }
-                                                   }}
-                                            />
-                                        </motion.div>
+                                    {
+                                        watch()["parent/grandparent info"][index]?.["pre medical condition"] === 'yes' &&
+                                        <>
+                                            <motion.div
+                                                key={'recent_medicine_changes'}
+                                                {...slide({enter: 'right', exit: 'bottom'})}
+                                                transition={{duration: 1}}
+                                            >
+                                                <Switch
+                                                    label={'Recent medicine changes'}
+                                                    name={`parent/grandparent info.${index}.recent medicine changes`}
+                                                    control={control}
+                                                    options={{
+                                                        on: {text: 'yes', value: 'yes'},
+                                                        off: {text: 'no', value: 'no'}
+                                                    }}
+                                                    rules={Switch_Validation()}
+                                                />
+                                            </motion.div>
+                                            {watch()["parent/grandparent info"][index]?.["recent medicine changes"] === 'yes' &&
+                                                <motion.div
+                                                    key={'additional_info'}
+                                                    {...slide({enter: 'right', exit: 'bottom'})}
+                                                    transition={{duration: 1}}
+                                                >
+                                                    <Input type={'textarea'}
+                                                           config={{rows: 5, cols: 20, maxChars: 250}}
+                                                           label={'Please briefly explain the changes'}
+                                                           name={`parent/grandparent info.${index}.z additional info`}
+                                                           control={control}
+                                                           rules={Additional_Info_Validation()}
+                                                    />
+                                                </motion.div>
+                                            }
+                                        </>
                                     }
                                 </AnimatePresence>
                             </InputContainer>)
                     })
                 }
             </Slider>
-            <Submit exit={exit} submit={{isDisabled: !!errors["parent/grandparent info"], isProcessing: processing}}/>
+            <Submit exit={exit} submit={{isDisabled: !!errors["parent/grandparent info"]}}/>
         </form>
     )
 }

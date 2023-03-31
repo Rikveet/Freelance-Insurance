@@ -24,6 +24,7 @@ const SliderOptions = ({add, remove, options}: props) => (
                     className={`${styles.Icon} ${option.selected ? styles.IconDisabled : ''}`}
                     key={`${option.text} ${index}`}
                     style={option.selected ? {background: '#16296a'} : {}}
+                    type={'button'}
                     onClick={() => {
                         if (!option.selected) {
                             option.onClick()

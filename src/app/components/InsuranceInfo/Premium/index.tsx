@@ -7,8 +7,8 @@ const Premium = () => {
         <Section className={styles.Container} id={'premium_insurance'}>
             <div className={styles.Text}>calculate premium</div>
             <div className={styles.ButtonContainer}>
-                <button className={styles.Button}>super visa insurance</button>
-                <button className={styles.Button}>visitor&apos;s insurance</button>
+                <a className={styles.Button} href={'#contact'}>super visa insurance</a>
+                <a className={styles.Button}>visitor&apos;s insurance</a>
             </div>
         </Section>
     )

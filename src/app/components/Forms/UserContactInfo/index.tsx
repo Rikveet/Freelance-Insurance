@@ -6,6 +6,7 @@ import {Services, UserContactInfoT} from "@/app/components/Forms/DataTypes";
 import Input from "@/app/components/Forms/Core/Input";
 import {FaArrowCircleRight} from "react-icons/fa";
 import {motion, useAnimation} from "framer-motion";
+import {Email_Validation, Name_Validation, Phone_Number_Validation} from "../Core/Validation";
 
 type props = {
     onSubmit: (userInfo: UserContactInfoT, service: Services) => void,
@@ -47,36 +48,19 @@ const UserContactInfo = ({userInfo, onSubmit}: props) => {
                        label={'name'}
                        name={'name'}
                        control={control}
-                       rules={{
-                           required: {value: true, message: 'Required*'},
-                           minLength: {value: 2, message: 'Too short...'},
-                           maxLength: {value: 20, message: 'Too long...'},
-                           pattern: {value: /^[a-zA-Z ]*$/, message: 'Only alphabets are allowed.'}
-                       }}
+                       rules={Name_Validation()}
                 />
                 <Input type={'tel'}
                        label={'phone number'}
                        name={'phone number'}
                        control={control}
-                       rules={{
-                           required: {value: true, message: 'Required*'},
-                           pattern: {
-                               value: /^(\+\d{1,2}\s?)?1?\-?\.?\s?\(?\d{3}\)?[\s.-]?\d{3}[\s.-]?\d{4}$/,
-                               message: 'Invalid Input'
-                           }
-                       }}
+                       rules={Phone_Number_Validation()}
                 />
                 <Input type={'email'}
                        label={'email'}
                        name={'email'}
                        control={control}
-                       rules={{
-                           required: {value: true, message: 'Required*'},
-                           pattern: {
-                               value: /(?:[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*|"(?:[\x01-\x08\x0b\x0c\x0e-\x1f\x21\x23-\x5b\x5d-\x7f]|\\[\x01-\x09\x0b\x0c\x0e-\x7f])*")@(?:(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?|\[(?:(?:(2(5[0-5]|[0-4][0-9])|1[0-9][0-9]|[1-9]?[0-9]))\.){3}(?:(2(5[0-5]|[0-4][0-9])|1[0-9][0-9]|[1-9]?[0-9])|[a-z0-9-]*[a-z0-9]:(?:[\x01-\x08\x0b\x0c\x0e-\x1f\x21-\x5a\x53-\x7f]|\\[\x01-\x09\x0b\x0c\x0e-\x7f])+)\])/,
-                               message: 'Invalid Input'
-                           }
-                       }}
+                       rules={Email_Validation()}
                 />
                 <motion.div className={sharedStyles.Group} animate={selectedServiceAnimation}>
                     <select className={`${sharedStyles.Select} ${inputStyles.Input} `}

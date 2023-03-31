@@ -1,5 +1,8 @@
 import {motion} from "framer-motion";
 import styles from './index.module.css';
+import {useRouter} from "next/navigation";
+import {useContext} from "react";
+import {CurrentSection} from "@/app/context/CurrentSection";
 
 const FadeIn = {
     'hidden': {
@@ -43,14 +46,19 @@ const SlideLeft = {
 }
 
 const CriticalIllness = () => {
+    const router = useRouter();
+    const {setSection} = useContext(CurrentSection);
     return (
         <motion.div className={styles.Container}
                     id={'critical_illness_insurance'}
+                    onMouseEnter={async ()=>{
+                        await router.push('#critical_illness_insurance')
+                        setSection('#critical_illness_insurance')
+                    }}
                     variants={FadeIn}
                     initial={'hidden'}
                     whileInView={'show'}
                     viewport={{once: true}}>
-            <motion.div/>
             <div className={styles.ImageContainer}>
                 <motion.img className={styles.Image}
                             src={'/images/criticalIllness.jpg'}

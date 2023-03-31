@@ -1,28 +1,6 @@
 import {motion} from "framer-motion";
 import React from "react";
-
-const Dot = () => (
-    <motion.span
-        style={{
-            display: "block",
-            width: "2rem",
-            height: "2rem",
-            backgroundColor: "white",
-            borderRadius: "50%"
-        }}
-        initial={{
-            y: "0%"
-        }}
-        animate={{
-            y: "100%"
-        }}
-        transition={{
-            duration: 0.5,
-            repeat: Infinity,
-            ease: "easeInOut"
-        }}
-    />
-)
+import {AiOutlineLoading} from "react-icons/ai";
 
 const Loading = () => (
     <div
@@ -35,20 +13,21 @@ const Loading = () => (
         }}>
         <motion.div
             style={{
-                width: "10rem",
-                height: "5rem",
+                width: "50%",
+                height: "50%",
                 display: "flex",
-                justifyContent: "space-around"
+                justifyContent: "space-around",
+                boxSizing: 'border-box',
             }}
-            animate={{
-                transition: {
-                    staggerChildren: 0.2
-                }
-            }}>
-            <Dot/>
-            <Dot/>
-            <Dot/>
+            animate={{rotate: 360}}
+            transition={{repeat: Infinity, duration: 0.5}}
+        >
+            <AiOutlineLoading style={{height: '100%', width: 'auto', aspectRatio: '1'}}/>
         </motion.div>
+        <p>
+            Submitting
+        </p>
+
     </div>
 )
 

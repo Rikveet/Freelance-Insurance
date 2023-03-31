@@ -16,14 +16,7 @@ type props<Name extends FieldValues, FieldType> = {
     rules: Omit<RegisterOptions<Name, Path<Name>>, "valueAsNumber" | "valueAsDate" | "setValueAs" | "disabled">
 }
 
-function Input<Name extends FieldValues, FieldType>({
-                                                        type,
-                                                        config,
-                                                        label,
-                                                        name,
-                                                        control,
-                                                        rules
-                                                    }: props<Name, FieldType>) {
+function Input<Name extends FieldValues, FieldType>({type, config, label, name, control, rules}: props<Name, FieldType>) {
     const [focused, setFocus] = useState(false)
     return (
         <Controller

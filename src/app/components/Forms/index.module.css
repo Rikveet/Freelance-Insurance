@@ -22,12 +22,14 @@
     margin-bottom: 50px;
     position: relative;
     padding: 50px;
+    transform: translateX(25%);
 }
 
 
 @media screen and (max-width: 800px) {
     .FormContainer{
         width: fit-content;
+        transform: translateX(0);
     }
 }
 

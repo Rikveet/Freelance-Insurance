@@ -41,7 +41,7 @@
     width: 100%;
     gap: 5px;
 }
-.Link{
+.Links>a{
     display: flex;
     flex-direction: row;
     justify-content: flex-start;
@@ -55,20 +55,15 @@
     transition: all ease-in 200ms;
     cursor: pointer;
     box-sizing: border-box;
-    padding: 0;
+    padding: 0 10px;
+    text-decoration: none;
 }
-.Link:hover{
-    border: 1px solid rgba(255, 255, 255, 0.3);
-    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
-    backdrop-filter: blur(5px);
-    -webkit-backdrop-filter: blur(5px);
-}
-.LinkIcon{
+.Links>a>svg{
     width: 25px;
     aspect-ratio: 1;
     height: auto;
 }
-.LinkText{
+.Links>a>p{
     font-family: var(--karla), sans-serif;
     font-size: 15px;
 }
@@ -80,13 +75,27 @@
     align-items: center;
     gap: 20px;
 }
-.SocialLink{
+.SocialLinks>a{
     color: white;
     width: 25px;
     aspect-ratio: 1;
     height: auto;
+    cursor: pointer;
 }
-@media screen and (max-width: 1100px) {
+.SocialLinks>a>svg{
+    width: 100%;
+    height: 100%;
+    padding: 2px;
+    border: transparent 1px solid;
+    border-radius: 5px;
+}
+.Links>a:hover,.SocialLinks>a>svg:hover{
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+    backdrop-filter: blur(5px);
+    -webkit-backdrop-filter: blur(5px);
+}
+@media screen and (max-width: 800px) {
     .Container{
         justify-content: flex-start;
         gap: 10px;
@@ -104,21 +113,20 @@
         height: 30%;
         justify-content: flex-end;
     }
+    .Links>a>p{
+        display: none;
+    }
+    .Links>a{
+        width: 100%;
+        padding: 2px;
+    }
+    .Links>a>svg{
+        width: 100%;
+    }
     .SocialLinks{
         gap: 10px;
         height: 30%;
         justify-content: flex-start;
-    }
-    .LinkText{
-        display: none;
-    }
-    .Link{
-        width: 100%;
-    }
-    .LinkIcon{
-        width: 100%;
-    }
-    .SocialLinks{
         flex-direction: column;
     }
 }

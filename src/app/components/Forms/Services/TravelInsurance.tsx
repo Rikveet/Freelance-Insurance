@@ -1,24 +1,26 @@
 import {Controller, useForm} from "react-hook-form";
-import React, {useState} from "react";
+import React from "react";
 import sharedStyles from "@/app/components/Forms/Core/styles.module.css";
 import Input from "@/app/components/Forms/Core/Input";
-import Switch from "@/app/components/Forms/Core/Switch";
 import ReactDatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import {props} from "@/app/components/Forms/Services/DataTypes";
 import InputContainer from "@/app/components/Forms/Core/InputContainer";
 import Submit from "@/app/components/Forms/Core/Submit";
+import {
+    Age_Validation,
+    Date_Picker_Validation,
+    Destination_Validation
+} from "@/app/components/Forms/Core/Validation";
 
 export type Data = {
     age: number,
-    'province ontario': 'yes' | 'no',
     'travel destination': string,
     'days': {
         'date of departure': Date,
         'date of return': Date,
         'days traveled': string,
-    },
-    'more_info'?: string
+    }
 }
 
 const TravelInsurance = ({exit, onSubmit}: props) => {
@@ -27,53 +29,24 @@ const TravelInsurance = ({exit, onSubmit}: props) => {
             defaultValues: {},
             mode: 'all'
         });
-    const [processing, setProcessing] = useState(false);
-    const _onSubmit = () => {
-        setProcessing(true)
-        onSubmit(watch()).then(res => {
-            setProcessing(false)
-            if (!res) {
-                console.log('failed')
-            }
-            console.log('success')
-        })
-    }
+
     return (
-        <form key={'travel_insurance'} onSubmit={handleSubmit(_onSubmit)}>
+        <form key={'travel_insurance'}
+              onSubmit={handleSubmit(() => {
+                  onSubmit(watch())
+              })}>
             <InputContainer direction={'col'}>
                 <Input type={'number'}
                        label={'Age'}
                        name={`age`}
                        control={control}
-                       rules={{
-                           required: {value: true, message: 'Required*'},
-                           min: {value: 1, message: 'Invalid*'},
-                           max: {value: 150, message: 'Invalid*'},
-                           pattern: {value: /^[0-9]{1,3}$/, message: 'Invalid*'}
-                       }}
+                       rules={Age_Validation()}
                 />
                 <Input type={'text'}
                        label={'Travel destination'}
                        name={`travel destination`}
                        control={control}
-                       rules={{
-                           required: {value: true, message: 'Required*'},
-                           maxLength: {value: 100, message: 'Too long..'},
-                           pattern: {value: /^[a-zA-Z ]*$/, message: 'Only alphabets are allowed.'}
-                       }}
-                />
-
-                <Switch
-                    label={'province ontario'}
-                    name={`province ontario`}
-                    control={control}
-                    options={{
-                        on: {text: 'yes', value: 'yes'},
-                        off: {text: 'no', value: 'no'}
-                    }}
-                    rules={{
-                        required: {value: true, message: 'Required*'},
-                    }}
+                       rules={Destination_Validation()}
                 />
                 <div
                     className={`${sharedStyles.Col} ${sharedStyles.Group}`}
@@ -117,12 +90,10 @@ const TravelInsurance = ({exit, onSubmit}: props) => {
                         )}
                         name={'days'}
                         control={control}
-                        rules={{
-                            required: true
-                        }}
+                        rules={Date_Picker_Validation()}
                     />
                 </div>
-                <Submit exit={exit} submit={{isDisabled: !!errors, isProcessing: processing}}/>
+                <Submit exit={exit} submit={{isDisabled: !!errors}}/>
             </InputContainer>
         </form>
     )

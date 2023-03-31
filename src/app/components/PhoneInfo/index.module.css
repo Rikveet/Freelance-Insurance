@@ -69,6 +69,10 @@
     font-weight: bolder;
     transition: all ease-in 250ms;
     cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-decoration: none;
 }
 .Button:hover{
     background: #821914;

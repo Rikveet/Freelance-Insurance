@@ -23,7 +23,7 @@ const images = [
 const HomeCarousel = () => {
     const [pointer, _setPointer] = useState(1);
     const [lastUpdate, setLastUpdate] = useState(Date.now());
-    const [isPlaying, setPlaying] = useState(false);
+    const [isPlaying, setPlaying] = useState(true);
     const setPointer = (p: number) => {
         if (Date.now() - lastUpdate > 1000) {
             setLastUpdate(Date.now())

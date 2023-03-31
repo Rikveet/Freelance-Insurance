@@ -9,13 +9,19 @@ import Switch from "@/app/components/Forms/Core/Switch";
 import SliderOptions from "@/app/components/Forms/Core/Slider/SliderOptions";
 import Slider from "@/app/components/Forms/Core/Slider";
 import Submit from "@/app/components/Forms/Core/Submit";
+import {
+    Additional_Info_Validation,
+    Age_Validation,
+    Name_Validation,
+    Switch_Validation
+} from "@/app/components/Forms/Core/Validation";
 
 export type Data = {
     'child info': {
         name: string,
         age: number,
         'province ontario': 'yes' | 'no',
-        'additional_info'?: string
+        'z additional info'?: string
     }[]
 }
 
@@ -36,19 +42,11 @@ const RESP = ({exit, onSubmit}: props) => {
         name: 'child info'
     })
     const [selectedIndex, setSelectedIndex] = useState<number>(0);
-    const [processing, setProcessing] = useState(false);
-    const _onSubmit = () => {
-        setProcessing(true)
-        onSubmit(watch()).then(res => {
-            setProcessing(false)
-            if (!res) {
-                console.log('failed')
-            }
-            console.log('success')
-        })
-    }
     return (
-        <form key={'RESP'} onSubmit={handleSubmit(_onSubmit)}>
+        <form key={'RESP'}
+              onSubmit={handleSubmit(() => {
+            onSubmit(watch())
+        })}>
             <SliderOptions
                 add={{
                     Icon: IoPersonAdd,
@@ -63,7 +61,7 @@ const RESP = ({exit, onSubmit}: props) => {
                     disabled: watch()['child info'].length > 1,
                     onClick: () => {
                         remove(selectedIndex);
-                        if (selectedIndex === watch()['child info'].length - 1) {
+                        if (selectedIndex >= watch()['child info'].length) {
                             setSelectedIndex(selectedIndex - 1)
                         }
                     }
@@ -87,23 +85,13 @@ const RESP = ({exit, onSubmit}: props) => {
                                        label={'name'}
                                        name={`child info.${index}.name`}
                                        control={control}
-                                       rules={{
-                                           required: {value: true, message: 'Required*'},
-                                           minLength: {value: 2, message: 'Too short...'},
-                                           maxLength: {value: 20, message: 'Too long...'},
-                                           pattern: {value: /^[a-zA-Z ]*$/, message: 'Only alphabets are allowed.'}
-                                       }}
+                                       rules={Name_Validation()}
                                 />
                                 <Input type={'number'}
                                        label={'Age'}
                                        name={`child info.${index}.age`}
                                        control={control}
-                                       rules={{
-                                           required: {value: true, message: 'Required*'},
-                                           min: {value: 1, message: 'Invalid*'},
-                                           max: {value: 150, message: 'Invalid*'},
-                                           pattern: {value: /^[0-9]{1,3}$/, message: 'Invalid*'}
-                                       }}
+                                       rules={Age_Validation()}
                                 />
                                 <Switch
                                     label={'province ontario'}
@@ -113,28 +101,20 @@ const RESP = ({exit, onSubmit}: props) => {
                                         on: {text: 'yes', value: 'yes'},
                                         off: {text: 'no', value: 'no'}
                                     }}
-                                    rules={{
-                                        required: {value: true, message: 'Required*'},
-                                    }}
+                                    rules={Switch_Validation()}
                                 />
                                 <Input type={'textarea'}
                                        config={{rows: 5, cols: 20, maxChars: 250}}
                                        label={'Please briefly explain the changes'}
-                                       name={`child info.${index}.additional_info`}
+                                       name={`child info.${index}.z additional info`}
                                        control={control}
-                                       rules={{
-                                           maxLength: {value: 250, message: 'Too long...'},
-                                           pattern: {
-                                               value: /^([a-zA-Z ]*[\r\n]?[a-zA-Z ]*){0,10}$/,
-                                               message: 'Numbers, Special characters or Too many new lines are not allowed'
-                                           }
-                                       }}
+                                       rules={Additional_Info_Validation()}
                                 />
                             </InputContainer>)
                     })
                 }
             </Slider>
-            <Submit exit={exit} submit={{isDisabled: !!errors["child info"], isProcessing: processing}}/>
+            <Submit exit={exit} submit={{isDisabled: !!errors["child info"]}}/>
         </form>
     )
 }
