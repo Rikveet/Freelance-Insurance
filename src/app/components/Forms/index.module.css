@@ -5,7 +5,8 @@
     align-items: center;
     justify-content: flex-start;
     width: 100%;
-    min-height: fit-content;
+    height: fit-content;
+    min-height: 100vh;
     position: relative;
     background: rgba(22, 41, 106, 0.8);
 }

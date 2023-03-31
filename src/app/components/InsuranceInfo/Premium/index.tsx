@@ -8,7 +8,7 @@ const Premium = () => {
             <div className={styles.Text}>calculate premium</div>
             <div className={styles.ButtonContainer}>
                 <a className={styles.Button} href={'#contact'}>super visa insurance</a>
-                <a className={styles.Button}>visitor&apos;s insurance</a>
+                <a className={styles.Button} href={'#contact'}>visitor&apos;s insurance</a>
             </div>
         </Section>
     )

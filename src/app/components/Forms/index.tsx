@@ -33,6 +33,9 @@ const Form = () => {
     useEffect(() => {
         if (processingResult !== undefined) {
             const resultTimeout = setTimeout(() => {
+                if(processingResult){
+                    exit()
+                }
                 setProcessingResult(undefined)
                 clearTimeout(resultTimeout)
             }, 3000)
@@ -57,7 +60,7 @@ const Form = () => {
                     // @ts-ignore
                     data[key] = _data[key].map((_entry) => {
                         const entry = {} as typeof _entry;
-                        Object.keys(_entry).sort().forEach((entry_key)=>{
+                        Object.keys(_entry).sort().forEach((entry_key) => {
                             entry[entry_key] = _entry[entry_key]
                         })
                         return entry
@@ -76,10 +79,11 @@ const Form = () => {
             return false
         }
         const token = await getToken()
-        setProcessingResult(await axios.post(`/api/formSubmit`, {
+        const postResult = await axios.post(`/api/formSubmit`, {
             token,
             service, ...userInfo, ...data,
-        }).then(res => res.data?.result === 'success').catch(_ => false))
+        }).then(res => res.data?.result === 'success').catch(_ => false)
+        setProcessingResult(postResult)
         setIsProcessing(false)
     }
     const exit = () => {
