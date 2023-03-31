@@ -8,8 +8,8 @@ const hind = Hind({weight: '300', display: 'swap', subsets: ["latin"], variable:
 const bungeeShade = Bungee_Shade({weight: '400', display: 'swap', subsets: ["latin"], variable: '--bungeeShade'});
 
 export const metadata = {
-    title: 'SHEVINDER SIDHU - INSURANCE EXPERT',
-    description: "Information on super visa and visitor's insurance.",
+    title: 'SHEVINDER SIDHU',
+    description: "Reunite with your family this summer. Get the Best Super Visa Insurance Quote and Medical Coverage for Your Parents & Grandparents visiting Canada.",
 }
 
 
@@ -24,6 +24,5 @@ export default function RootLayout({children,}: { children: React.ReactNode }) {
         {children}
         </body>
         </html>
-
     )
 }

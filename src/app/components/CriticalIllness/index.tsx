@@ -6,10 +6,10 @@ import {CurrentSection} from "@/app/context/CurrentSection";
 
 const FadeIn = {
     'hidden': {
-        background: 'white'
+        background: 'rgba(255, 255, 255, 0.5)'
     },
     'show': {
-        background: 'rgba(255, 255, 255, 0.6)',
+        background: 'rgba(255, 255, 255, 1)',
         backdropFilter: 'blur(20px)',
         transition: {
             staggerChildren: 5
