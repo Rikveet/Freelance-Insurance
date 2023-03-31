@@ -5,7 +5,7 @@ import Loading from "@/app/components/Motions/Loading";
 import {Processing} from "@/app/components/Forms";
 import SubmitResult from "@/app/components/Motions/SubmitResult";
 import {TiTick} from "react-icons/ti";
-import {BiError} from "react-icons/Bi";
+import {BiError} from "react-icons/bi";
 
 type props = {
     exit: { (): void },
