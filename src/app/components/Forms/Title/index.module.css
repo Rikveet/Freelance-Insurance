@@ -1,5 +1,5 @@
 .TitleContainer{
-    width: 700px;
+    width: 100%;
     height: 200px;
 }
 .Title{
@@ -10,7 +10,9 @@
     top: 30px;
     margin: 0;
     left: 25px;
-    height: fit-content;
+    height: 100%;
+    width: 100%;
+    box-sizing: border-box;
 }
 .Title>div{
     font-family: var(--bungeeShade), sans-serif;
@@ -18,6 +20,7 @@
     color: white;
     text-transform: uppercase;
     margin: 0;
+    box-sizing: border-box;
 }
 
 
@@ -50,4 +53,17 @@
 
 .Waves > svg:nth-child(2) {
     z-index: 2;
+}
+
+@media screen and (max-width: 800px) {
+    .Title>div{
+
+    }
+
+}
+
+@media screen and (max-width: 450px) {
+    .Title>div{
+
+    }
 }

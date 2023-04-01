@@ -90,7 +90,7 @@ const UserContactInfo = ({userInfo, onSubmit}: props) => {
                 </motion.div>
             </div>
             <button className={sharedStyles.SubmitButton}
-                    disabled={!!errors.name || !!errors.email || !!errors["phone number"]}>
+                    disabled={Object.keys(errors).length>0}>
                 Next
                 <FaArrowCircleRight/>
             </button>

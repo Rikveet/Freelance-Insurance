@@ -53,7 +53,7 @@ const TFSA = ({exit, onSubmit}: props) => {
                        control={control}
                        rules={Additional_Info_Validation()}
                 />
-                <Submit exit={exit} submit={{isDisabled: !!errors}}/>
+                <Submit exit={exit} submit={{isDisabled: Object.keys(errors).length>0}}/>
             </InputContainer>
         </form>
     )

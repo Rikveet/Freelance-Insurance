@@ -95,7 +95,7 @@ const TravelInsurance = ({exit, onSubmit}: props) => {
                         rules={Date_Picker_Validation()}
                     />
                 </div>
-                <Submit exit={exit} submit={{isDisabled: !!errors}}/>
+                <Submit exit={exit} submit={{isDisabled: Object.keys(errors).length>0}}/>
             </InputContainer>
         </form>
     )
