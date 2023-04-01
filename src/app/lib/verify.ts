@@ -4,6 +4,7 @@ import {FieldValues} from "react-hook-form";
 
 export function verify<T extends FieldValues, FieldType>(values: { value: string | number | FieldType, rules: Rules<T> }[]) {
     return values.every(({value, rules}) => {
+
         if (rules.required?.value && !value) {
             return false;
         }

@@ -30,7 +30,6 @@ export default class DataExtractor {
     getData(): ExtractedData {
         const userData = this.getUserData()
         const formData = this.getFormData()
-
         if (!userData || !formData) {
             return undefined
         }
@@ -89,8 +88,8 @@ export default class DataExtractor {
         }
     }
 
-    private getKeys(info: Object): string[]{
-        return Object.keys(info).map(value => (value.slice(0,1).replace('z','').toUpperCase() + value.slice(1,).replaceAll('_',' ')).trim())
+    private getKeys(info: Object): string[] {
+        return Object.keys(info).map(value => (value.slice(0, 1).replace('z', '').toUpperCase() + value.slice(1,).replaceAll('_', ' ')).trim())
     }
 
     private getSuperVisa(): ExtractedData {
@@ -148,7 +147,7 @@ export default class DataExtractor {
         ])) {
             return undefined
         }
-        return [['', '',...this.getKeys(info)], ['', '', ...Object.values(info)]]
+        return [['', '', ...this.getKeys(info)], ['', '', ...Object.values(info)]]
     }
 
     private getDisabilityIns(): ExtractedData {
@@ -168,22 +167,19 @@ export default class DataExtractor {
     private getTravelIns(): ExtractedData {
         const _info = this.body.data as TravelInsData
         if (!verify([
-            {value: _info.age, rules: Name_Validation()},
+            {value: _info.age, rules: Age_Validation()},
             {value: _info.days, rules: Date_Picker_Validation()},
             {value: _info["travel destination"], rules: Destination_Validation()}
         ])) {
             return undefined
         }
-        const info: Partial<TravelInsData> = _info
-        const {'date of departure': dod, 'date of return':dor, 'days traveled': dt} = _info.days
-        delete info.days
         return [
-            ['', '', ...this.getKeys(info), 'Departure Date', 'Return Date', 'Days Travelled', 'More Info'],
+            ['', '', 'Age', 'Travel destination', 'Departure date', 'Return date', 'Days travelled', 'More info'],
             ['', '',
                 _info.age, _info["travel destination"],
-                dod.toLocaleString('en-US', {timeZone: 'America/Montreal'}),
-                dor.toLocaleString('en-US', {timeZone: 'America/Montreal'}),
-                dt
+                new Date(_info.days["date of departure"]).toDateString(),
+                new Date(_info.days["date of return"]).toDateString(),
+                _info.days["days traveled"]
             ]
         ]
     }

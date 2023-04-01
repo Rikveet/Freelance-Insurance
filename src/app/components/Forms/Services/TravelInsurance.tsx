@@ -26,8 +26,7 @@ export type Data = {
 const TravelInsurance = ({exit, onSubmit}: props) => {
     const {handleSubmit, watch, control, formState: {errors}} = useForm<Data>(
         {
-            defaultValues: {
-            },
+            defaultValues: {},
             mode: 'all'
         });
 
@@ -61,41 +60,54 @@ const TravelInsurance = ({exit, onSubmit}: props) => {
                         Please select your traveling period
                     </div>
                     <Controller
-                        render={({field}) => (
-                            <ReactDatePicker
-                                selected={field.value ? field.value['date of departure'] : undefined}
-                                onChange={(dates) => {
-                                    const [startDate, endDate] = dates
-                                    let dateUpdate = {}
-                                    if (startDate) {
-                                        dateUpdate = {'date of departure': startDate}
-                                        field.onChange()
-                                    }
-                                    if (endDate) {
-                                        dateUpdate = {...dateUpdate, 'date of return': endDate}
-                                    }
-                                    if (startDate && endDate) {
-                                        dateUpdate = {
-                                            ...dateUpdate,
-                                            'days traveled': endDate.getDate() - startDate.getDate()
+                        render={({field, fieldState}) => (
+                            <>
+                                <ReactDatePicker
+                                    selected={field.value ? field.value['date of departure'] : undefined}
+                                    onChange={(dates) => {
+                                        const [startDate, endDate] = dates
+                                        let dateUpdate = {}
+                                        if (startDate) {
+                                            dateUpdate = {'date of departure': startDate}
+                                            field.onChange()
                                         }
+                                        if (endDate) {
+                                            dateUpdate = {...dateUpdate, 'date of return': endDate}
+                                        }
+                                        if (startDate && endDate) {
+                                            dateUpdate = {
+                                                ...dateUpdate,
+                                                'days travelling': `${(endDate.getTime() - startDate.getTime()) / (1000 * 60 * 60 * 24)} days`
+                                            }
+                                        }
+                                        if (dateUpdate) {
+                                            field.onChange(dateUpdate)
+                                        }
+                                    }}
+                                    startDate={field.value ? field.value['date of departure'] : undefined}
+                                    endDate={field.value ? field.value['date of return'] : undefined}
+                                    selectsRange
+                                    inline
+                                >
+                                    {
+                                        fieldState.error &&
+                                        <span className={sharedStyles.Error}>
+                                        {
+                                            fieldState.error.message
+                                        }
+                                    </span>
                                     }
-                                    if (dateUpdate) {
-                                        field.onChange(dateUpdate)
-                                    }
-                                }}
-                                startDate={field.value ? field.value['date of departure'] : undefined}
-                                endDate={field.value ? field.value['date of return'] : undefined}
-                                selectsRange
-                                inline
-                            />
+                                </ReactDatePicker>
+
+                            </>
+
                         )}
                         name={'days'}
                         control={control}
                         rules={Date_Picker_Validation()}
                     />
                 </div>
-                <Submit exit={exit} submit={{isDisabled: Object.keys(errors).length>0}}/>
+                <Submit exit={exit} submit={{isDisabled: Object.keys(errors).length > 0}}/>
             </InputContainer>
         </form>
     )

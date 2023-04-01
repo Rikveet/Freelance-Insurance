@@ -81,6 +81,6 @@ export function Destination_Validation<T extends FieldValues>() {
 
 export function Date_Picker_Validation<T extends FieldValues>() {
     return {
-        required: true
+        required: {value: true, message: 'Please select the days you will be travelling.'}
     } as Rules<T>
 }
