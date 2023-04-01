@@ -30,6 +30,7 @@ export default class DataExtractor {
     getData(): ExtractedData {
         const userData = this.getUserData()
         const formData = this.getFormData()
+
         if (!userData || !formData) {
             return undefined
         }
@@ -38,7 +39,7 @@ export default class DataExtractor {
 
     private getUserData(): UserContactInfoT | undefined {
         try {
-            const {name, email, 'phone number': phone_number} = this.body
+            const {name, email, 'phone number': phone_number} = this.body.userInfo
             if (!name || !email || !phone_number) {
                 return undefined;
             }
@@ -93,7 +94,7 @@ export default class DataExtractor {
     }
 
     private getSuperVisa(): ExtractedData {
-        const {'parent/grandparent info': info} = this.body as SuperVisaData
+        const {'parent/grandparent info': info} = this.body.data as SuperVisaData
         if (!verify(info.flatMap(parent => ([
             {value: parent.name, rules: Name_Validation()},
             {value: parent.sex, rules: Switch_Validation()},
@@ -108,7 +109,7 @@ export default class DataExtractor {
     }
 
     private getVisitorIns(): ExtractedData {
-        const {'visitor info': info} = this.body as VisitorData
+        const {'visitor info': info} = this.body.data as VisitorData
         if (!verify(info.flatMap(visitor => ([
             {value: visitor.name, rules: Name_Validation()},
             {value: visitor.sex, rules: Switch_Validation()},
@@ -123,7 +124,7 @@ export default class DataExtractor {
     }
 
     private getLifeIns(): ExtractedData {
-        const info = this.body as LifeInsData
+        const info = this.body.data as LifeInsData
         if (!verify([
             {value: info.age, rules: Age_Validation()},
             {value: info["insurance plan"], rules: Select_Group_Validation()},
@@ -137,7 +138,7 @@ export default class DataExtractor {
     }
 
     private getCriticalIllness(): ExtractedData {
-        const info = this.body as CriticalInsData
+        const info = this.body.data as CriticalInsData
         if (!verify([
             {value: info.age, rules: Name_Validation()},
             {value: info["insurance plan"], rules: Select_Group_Validation()},
@@ -151,7 +152,7 @@ export default class DataExtractor {
     }
 
     private getDisabilityIns(): ExtractedData {
-        const info = this.body as DisabilityInsData
+        const info = this.body.data as DisabilityInsData
         if (!verify([
             {value: info.age, rules: Age_Validation()},
             {value: info.profession, rules: Profession_Validation()},
@@ -165,7 +166,7 @@ export default class DataExtractor {
     }
 
     private getTravelIns(): ExtractedData {
-        const _info = this.body as TravelInsData
+        const _info = this.body.data as TravelInsData
         if (!verify([
             {value: _info.age, rules: Name_Validation()},
             {value: _info.days, rules: Date_Picker_Validation()},
@@ -188,7 +189,7 @@ export default class DataExtractor {
     }
 
     private getResp(): ExtractedData {
-        const {'child info': info} = this.body as RESPData
+        const {'child info': info} = this.body.data as RESPData
         if (!verify(info.flatMap(child => ([
             {value: child.name, rules: Name_Validation()},
             {value: child.age, rules: Age_Validation()},
@@ -201,7 +202,7 @@ export default class DataExtractor {
     }
 
     private getRrsp(): ExtractedData {
-        const info = this.body as RRSPData
+        const info = this.body.data as RRSPData
         if (!verify([
             {value: info.age, rules: Age_Validation()},
             {value: info["province ontario"], rules: Switch_Validation()},
@@ -214,7 +215,7 @@ export default class DataExtractor {
     }
 
     private getTfsa(): ExtractedData {
-        const info = this.body as TFSAData
+        const info = this.body.data as TFSAData
         if (!verify([
             {value: info.age, rules: Age_Validation()},
             {value: info["province ontario"], rules: Switch_Validation()},
@@ -226,7 +227,7 @@ export default class DataExtractor {
     }
 
     private getInternationStdIns(): ExtractedData {
-        const info = this.body as InternationalStdInsData
+        const info = this.body.data as InternationalStdInsData
         if (!verify([
             {value: info.age, rules: Age_Validation()},
             {value: info["pre medical condition"], rules: Switch_Validation()},
@@ -238,7 +239,7 @@ export default class DataExtractor {
     }
 
     private getMortgageIns(): ExtractedData {
-        const info = this.body as MortgageInsData
+        const info = this.body.data as MortgageInsData
         if (!verify([
             {value: info.age, rules: Age_Validation()},
             {value: info["province ontario"], rules: Switch_Validation()},

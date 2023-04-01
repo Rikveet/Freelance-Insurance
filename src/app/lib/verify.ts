@@ -10,10 +10,10 @@ export function verify<T extends FieldValues, FieldType>(values: { value: string
         if(!value && !rules.required){
             return true;
         }
-        if (rules.max?.value && !(typeof value === "number" && value <= rules.max.value)) {
+        if (rules.max?.value && !(value as number <= rules.max.value)) {
             return false;
         }
-        if (rules.min?.value && !(typeof value === "number" && value >= rules.min.value)) {
+        if (rules.min?.value && !(value as number >= rules.min.value)) {
             return false;
         }
         if (rules.maxLength?.value && !(typeof value === "string" && value.length <= rules.maxLength.value)) {

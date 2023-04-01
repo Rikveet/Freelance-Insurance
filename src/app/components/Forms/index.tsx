@@ -80,8 +80,7 @@ const Form = () => {
         }
         const token = await getToken()
         const postResult = await axios.post(`/api/formSubmit`, {
-            token,
-            service, ...userInfo, ...data,
+            token, service, userInfo, data,
         }).then(res => res.data?.result === 'success').catch(_ => false)
         setProcessingResult(postResult)
         setIsProcessing(false)
