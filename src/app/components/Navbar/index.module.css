@@ -23,16 +23,16 @@
     top: 50%;
     aspect-ratio: 1;
     height: 30px;
-    width: auto;
+    width: 30px;
     background: white;
     padding: 5px;
-    border-radius: 100%;
+    border-radius: 50%;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
-    transition: height ease-in 200ms;
+    transition: scale ease-in 200ms;
     cursor: pointer;
 }
 .NavbarToggle:hover{
-    height: 40px;
+    scale: 1.05;
 }
 .NavbarToggle>svg{
     width: 100%;
