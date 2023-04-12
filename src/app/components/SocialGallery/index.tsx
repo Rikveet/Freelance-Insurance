@@ -2,10 +2,10 @@ import Instagram, {Link} from "@/app/components/SocialGallery/InstagramCarousel"
 import styles from './index.module.css';
 import {useEffect, useState} from "react";
 import {useWindowSize} from "usehooks-ts";
-import axios from "axios";
 
 const getLinks = async () => {
-    const results =  await axios.get('/api/instaLinks').then(data => data.data.data as Link[]).catch(_ => undefined)
+    const results = await fetch('/api/instaLinks', {cache: 'no-store'})
+        .then(async res => (await res.json()).data as Link[]).catch(_ => undefined)
     if (!results) {
         return []
     }
@@ -35,8 +35,6 @@ const getLinks = async () => {
 }
 
 
-
-
 const SocialGallery = () => {
     const [links, setLinks] = useState<Link[]>()
     const [maxPerColumns, setMaxPerColumns] = useState<number>(0)
@@ -51,20 +49,21 @@ const SocialGallery = () => {
         }
         return columns
     }
-    useEffect(()=>{
-        getLinks().then(result=>{
+    useEffect(() => {
+        getLinks().then(result => {
             setMaxPerColumns(Math.floor(result.length / Math.floor(size.width / 350)))
             setLinks(result)
-        }).catch(_=>{})
-    },[])
+        }).catch(_ => {
+        })
+    }, [])
     useEffect(() => {
         if (links) {
-            setMaxPerColumns(Math.floor(links.length / Math.floor(Math.max(size.width / 400,1))))
+            setMaxPerColumns(Math.floor(links.length / Math.floor(Math.max(size.width / 400, 1))))
         }
     }, [size, links])
 
     return (
-        links && links?.length>0 ?
+        links && links?.length > 0 ?
             <div className={styles.Container} id={'media'}>
                 {
                     getColumns().map((links) => (
