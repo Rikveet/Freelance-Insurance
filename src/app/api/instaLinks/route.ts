@@ -6,6 +6,6 @@ export async function GET() {
         , {cache: 'no-store'})
         .then(async res => {
             return (res.status)
-        }).catch(e => 'error')
+        }).catch(e => e.toString())
     return NextResponse.json({data: result})
 }
