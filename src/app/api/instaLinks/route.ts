@@ -5,7 +5,7 @@ export async function GET() {
     const result = await fetch(`https://graph.instagram.com/me/media?fields=id,media_type,media_url,thumbnail_url,username,timestamp,caption,permalink&access_token=${instaAccessToken}`
         , {cache: 'no-store'})
         .then(async res => {
-            return ((await res.json()).data)
+            return ((await res.json()))
         }).catch(_ => undefined)
     return NextResponse.json({data: result})
 }
