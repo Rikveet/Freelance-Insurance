@@ -7,5 +7,5 @@ export async function GET() {
         .then(async res => {
             return ((await res.json()).data)
         }).catch(_ => undefined)
-    return NextResponse.json({data: result})
+    return NextResponse.json({data: result, extra: 'extra'})
 }
