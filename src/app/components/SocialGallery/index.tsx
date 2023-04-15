@@ -8,7 +8,6 @@ const getLinks = async () => {
         .then(async res => {
             return (await res.json()).data as Link[]
         }).catch(_ => undefined)
-    console.log(results)
     if (!results) {
         return []
     }
