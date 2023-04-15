@@ -6,10 +6,9 @@ import {useWindowSize} from "usehooks-ts";
 const getLinks = async () => {
     const results = await fetch('/api/instaLinks', {cache: 'no-store'})
         .then(async res => {
-            console.log((await res.json()).data)
             return (await res.json()).data as Link[]
         }).catch(_ => undefined)
-
+    console.log(results)
     if (!results) {
         return []
     }
