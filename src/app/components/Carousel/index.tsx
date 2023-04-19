@@ -1,6 +1,7 @@
+'use client';
 import Section from "@/app/components/Section";
 import styles from './index.module.css';
-import React, {useState} from "react";
+import {useState} from "react";
 import {GrNext} from "react-icons/gr";
 import {AnimatePresence, motion} from "framer-motion";
 import {useInterval} from "usehooks-ts";

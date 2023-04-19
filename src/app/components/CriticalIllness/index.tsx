@@ -1,3 +1,4 @@
+'use client';
 import {motion} from "framer-motion";
 import styles from './index.module.css';
 import {useRouter} from "next/navigation";

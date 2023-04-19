@@ -1,13 +1,15 @@
-import Instagram, {Link} from "@/app/components/SocialGallery/InstagramCarousel";
+import InstagramCarousel, {Link} from "@/app/components/SocialGallery/InstagramCarousel";
 import styles from './index.module.css';
-import {useEffect, useState} from "react";
-import {useWindowSize} from "usehooks-ts";
 
-const getLinks = async () => {
-    const results = await fetch('/api/instaLinks', {cache: 'no-store'})
+async function getMediaInfo() {
+    const instaAccessToken = process.env.INSTA_TOKEN;
+    const results = await fetch(`https://graph.instagram.com/me/media?fields=id,media_type,media_url,thumbnail_url,username,timestamp,caption,permalink&access_token=${instaAccessToken}`
+        , {cache: 'no-store'})
         .then(async res => {
             return (await res.json()).data as Link[]
-        }).catch(_ => undefined)
+        }).catch(e => {
+            return undefined
+        })
     if (!results) {
         return []
     }
@@ -37,45 +39,12 @@ const getLinks = async () => {
 }
 
 
-const SocialGallery = () => {
-    const [links, setLinks] = useState<Link[]>()
-    const [maxPerColumns, setMaxPerColumns] = useState<number>(0)
-    const size = useWindowSize();
-    const getColumns = () => {
-        const columns: Link[][] = []
-        for (let i = 0; i < links!.length; i += maxPerColumns) {
-            columns.push(links!.slice(i, i + maxPerColumns))
-        }
-        if (columns[columns.length - 1].length < maxPerColumns) {
-            columns.pop()
-        }
-        return columns
-    }
-    useEffect(() => {
-        getLinks().then(result => {
-            setMaxPerColumns(Math.floor(result.length / Math.floor(size.width / 350)))
-            setLinks(result)
-        }).catch(_ => {
-        })
-    }, [])
-    useEffect(() => {
-        if (links) {
-            setMaxPerColumns(Math.floor(links.length / Math.floor(Math.max(size.width / 400, 1))))
-        }
-    }, [size, links])
-
+const SocialGallery = async () => {
+    const links = await getMediaInfo()
     return (
         links && links?.length > 0 ?
             <div className={styles.Container} id={'media'}>
-                {
-                    getColumns().map((links) => (
-                        <Instagram
-                            key={links.map(link => link.id).join('')}
-                            postLinks={links}
-                            speed={Math.floor(Math.random() * (12 - 8 + 1) + 8)}
-                        />
-                    ))
-                }
+                <InstagramCarousel postLinks={links}/>
             </div> :
             <></>
     )

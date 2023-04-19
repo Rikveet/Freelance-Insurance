@@ -1,4 +1,3 @@
-'use client';
 import styles from "@/app/index.module.css";
 import InfoHeader from "@/app/components/ContactHeader";
 import React from "react";
@@ -30,8 +29,7 @@ const links = [
 function Home() {
     return (
         <CurrentSectionContext>
-            <GoogleReCaptchaProvider container={{parameters: {theme: 'dark'}}}
-                                     reCaptchaKey={process.env.NEXT_PUBLIC_RECAPTCHA_SITE_KEY as string}>
+
                 <main className={styles.Main}>
                     <InfoHeader/>
                     <Navbar {...{links}}/>
@@ -40,10 +38,11 @@ function Home() {
                     <PhoneInfo/>
                     <MoreServices/>
                     <CriticalIllness/>
+                    {/* @ts-expect-error Server Component */}
                     <SocialGallery/>
                     <Form/>
                 </main>
-            </GoogleReCaptchaProvider>
+
         </CurrentSectionContext>
     )
 }

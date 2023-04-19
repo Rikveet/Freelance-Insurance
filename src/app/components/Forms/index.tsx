@@ -1,7 +1,7 @@
 'use client';
 import Section from "@/app/components/Section";
 import styles from './index.module.css';
-import {useGoogleReCaptcha} from "react-google-recaptcha-v3";
+import {GoogleReCaptchaProvider, useGoogleReCaptcha} from "react-google-recaptcha-v3";
 import React, {createContext, useCallback, useEffect, useState} from "react";
 import axios from "axios";
 import Title from "@/app/components/Forms/Title";
@@ -33,7 +33,7 @@ const Form = () => {
     useEffect(() => {
         if (processingResult !== undefined) {
             const resultTimeout = setTimeout(() => {
-                if(processingResult){
+                if (processingResult) {
                     exit()
                 }
                 setProcessingResult(undefined)
@@ -89,52 +89,58 @@ const Form = () => {
         setService(undefined)
     }
     return (
-        <Section className={styles.Container} id={'contact'}>
-            <Background/>
-            <Title/>
-            <motion.div className={styles.FormContainer} layout>
-                <BusinessInfo/>
-                <div className={sharedStyles.Form}>
-                    <AnimatePresence mode={'wait'}>
-                        <motion.div key={service || 'user_info'}
-                                    {...slide(service ? {enter: "right", exit: 'right'} : {
-                                        enter: 'left',
-                                        exit: "left"
-                                    })}
-                                    transition={{duration: 0.75}}
-                                    layout>
-                            <Processing.Provider value={{isProcessing, processingResult}}>
-                                {
-                                    service ?
-                                        {
-                                            'super visa insurance': <SuperVisaInsurance {...{exit, onSubmit}}/>,
-                                            "visitor's insurance": <VisitorInsurance {...{exit, onSubmit}}/>,
-                                            'life insurance': <LifeInsurance {...{exit, onSubmit}}/>,
-                                            'critical illness insurance': <CriticalInsurance {...{exit, onSubmit}}/>,
-                                            'disability insurance': <DisabilityInsurance {...{exit, onSubmit}}/>,
-                                            'travel insurance': <TravelInsurance {...{exit, onSubmit}}/>,
-                                            'resp': <RESP {...{exit, onSubmit}}/>,
-                                            'rrsp': <RRSP {...{exit, onSubmit}}/>,
-                                            'tfsa': <TFSA {...{exit, onSubmit}}/>,
-                                            "international student's insurance": <InternationStudentInsurance {...{
-                                                exit,
-                                                onSubmit
-                                            }}/>,
-                                            'mortgage insurance': <MortgageInsurance {...{exit, onSubmit}}/>,
-                                        }[service] :
-                                        <UserContactInfo {...{
-                                            userInfo, onSubmit: (userInfo: UserContactInfoT, service: Services) => {
-                                                setService(service)
-                                                setUserInfo(userInfo)
-                                            }
-                                        }}/>
-                                }
-                            </Processing.Provider>
-                        </motion.div>
-                    </AnimatePresence>
-                </div>
-            </motion.div>
-        </Section>
+        <GoogleReCaptchaProvider container={{parameters: {theme: 'dark'}}}
+                                 reCaptchaKey={process.env.NEXT_PUBLIC_RECAPTCHA_SITE_KEY as string}>
+            <Section className={styles.Container} id={'contact'}>
+                <Background/>
+                <Title/>
+                <motion.div className={styles.FormContainer} layout>
+                    <BusinessInfo/>
+                    <div className={sharedStyles.Form}>
+                        <AnimatePresence mode={'wait'}>
+                            <motion.div key={service || 'user_info'}
+                                        {...slide(service ? {enter: "right", exit: 'right'} : {
+                                            enter: 'left',
+                                            exit: "left"
+                                        })}
+                                        transition={{duration: 0.75}}
+                                        layout>
+                                <Processing.Provider value={{isProcessing, processingResult}}>
+                                    {
+                                        service ?
+                                            {
+                                                'super visa insurance': <SuperVisaInsurance {...{exit, onSubmit}}/>,
+                                                "visitor's insurance": <VisitorInsurance {...{exit, onSubmit}}/>,
+                                                'life insurance': <LifeInsurance {...{exit, onSubmit}}/>,
+                                                'critical illness insurance': <CriticalInsurance {...{
+                                                    exit,
+                                                    onSubmit
+                                                }}/>,
+                                                'disability insurance': <DisabilityInsurance {...{exit, onSubmit}}/>,
+                                                'travel insurance': <TravelInsurance {...{exit, onSubmit}}/>,
+                                                'resp': <RESP {...{exit, onSubmit}}/>,
+                                                'rrsp': <RRSP {...{exit, onSubmit}}/>,
+                                                'tfsa': <TFSA {...{exit, onSubmit}}/>,
+                                                "international student's insurance": <InternationStudentInsurance {...{
+                                                    exit,
+                                                    onSubmit
+                                                }}/>,
+                                                'mortgage insurance': <MortgageInsurance {...{exit, onSubmit}}/>,
+                                            }[service] :
+                                            <UserContactInfo {...{
+                                                userInfo, onSubmit: (userInfo: UserContactInfoT, service: Services) => {
+                                                    setService(service)
+                                                    setUserInfo(userInfo)
+                                                }
+                                            }}/>
+                                    }
+                                </Processing.Provider>
+                            </motion.div>
+                        </AnimatePresence>
+                    </div>
+                </motion.div>
+            </Section>
+        </GoogleReCaptchaProvider>
     )
 }
 export default Form;

@@ -1,3 +1,4 @@
+"use client";
 import styles from "./index.module.css";
 import Premium from "@/app/components/InsuranceInfo/Premium";
 import MainServices from "@/app/components/InsuranceInfo/MainServices";

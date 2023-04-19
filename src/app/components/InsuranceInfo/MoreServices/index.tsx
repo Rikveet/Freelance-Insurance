@@ -1,3 +1,4 @@
+'use client';
 import React from "react";
 import ServicesContainer from "@/app/components/InsuranceInfo/ServicesContainer";
 import Card from "@/app/components/Card";

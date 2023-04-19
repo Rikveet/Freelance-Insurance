@@ -1,7 +1,8 @@
+'use client';
 import React, {useEffect, useState} from "react";
 import styles from './index.module.css';
 import {motion} from "framer-motion";
-import {useInterval} from "usehooks-ts";
+import {useInterval, useWindowSize} from "usehooks-ts";
 import ReactPlayer from "react-player";
 import {FaRegPlayCircle} from "react-icons/fa";
 import {useInView} from "react-intersection-observer";
@@ -20,7 +21,8 @@ export type Link = {
 
 const ImageView = ({url}: { url?: string }) => {
     return (
-        url ? <Image className={styles.CardMedia} src={url} alt={'Instagram post'} height={250} width={250} loading={'eager'} unoptimized={true}/> : <></>
+        url ? <Image className={styles.CardMedia} src={url} alt={'Instagram post'} height={250} width={250}
+                     loading={'eager'} unoptimized={true}/> : <></>
     )
 }
 
@@ -105,7 +107,8 @@ const Embed = ({linkInfo, moveToEnd, lastElement, speed}: EmbedProps) => {
         </motion.div>
     )
 }
-const InstagramCarousel = ({postLinks, speed}: { postLinks: Link[], speed: number }) => {
+
+const Carousel = ({postLinks, speed}: { postLinks: Link[], speed: number }) => {
     const [links, setLinks] = useState<Link[]>(postLinks);
     const [isPlaying, setPlaying] = useState(true);
     const moveToEnd = (link: Link) => {
@@ -152,6 +155,40 @@ const InstagramCarousel = ({postLinks, speed}: { postLinks: Link[], speed: numbe
                     />)
             }
         </motion.div>
+    )
+}
+
+const InstagramCarousel = ({postLinks}: { postLinks: Link[]}) => {
+    const [maxPerColumns, setMaxPerColumns] = useState<number>(1)
+    const size = useWindowSize()
+    useEffect(() => {
+        setMaxPerColumns(Math.floor(postLinks.length / Math.floor(Math.max(size.width / 350, 1))))
+    }, [])
+    useEffect(() => {
+        setMaxPerColumns(Math.floor(postLinks.length / Math.floor(Math.max(size.width / 350, 1))))
+    }, [postLinks, size])
+
+    const getColumns = () => {
+        const columns: Link[][] = []
+        for (let i = 0; i < postLinks!.length; i += maxPerColumns) {
+            columns.push(postLinks!.slice(i, i + maxPerColumns))
+        }
+        if (columns[columns.length - 1].length < maxPerColumns) {
+            columns.pop()
+        }
+        return columns
+    }
+    return (
+        <>
+            {
+                getColumns().map((links) => (
+                    <Carousel
+                        key={links.map(link => link.id).join('')}
+                        postLinks={links}
+                        speed={Math.floor(Math.random() * (12 - 8 + 1) + 8)}/>
+                ))
+            }
+        </>
     )
 }
 
