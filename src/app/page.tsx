@@ -9,7 +9,6 @@ import MoreServices from "@/app/components/InsuranceInfo/MoreServices";
 import CriticalIllness from "@/app/components/CriticalIllness";
 import SocialGallery from "@/app/components/SocialGallery";
 import Form from "@/app/components/Forms";
-import {GoogleReCaptchaProvider} from "react-google-recaptcha-v3";
 import CurrentSectionContext from "@/app/context/CurrentSection";
 
 const links = [
