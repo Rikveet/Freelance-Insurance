@@ -106,7 +106,7 @@ const RESP = ({exit, onSubmit}: props) => {
                                 />
                                 <Input type={'textarea'}
                                        config={{rows: 5, cols: 20, maxChars: 250}}
-                                       label={'Please briefly explain the changes'}
+                                       label={'Any Additional Info'}
                                        name={`child info.${index}.z additional info`}
                                        control={control}
                                        rules={Additional_Info_Validation()}

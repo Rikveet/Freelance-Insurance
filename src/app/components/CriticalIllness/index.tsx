@@ -91,9 +91,9 @@ const CriticalIllness = () => {
                     This insurance provides lump-sum coverage amount so that you can pay for your exorbitant medical
                     expenses and ease financial burden while recovering.
                 </motion.div>
-                <motion.button className={styles.Button} variants={SlideRight}>
-                    get free quote
-                </motion.button>
+                <motion.a className={styles.Button} variants={SlideRight} href={'#contact'}>
+                    <p>get free quote</p>
+                </motion.a>
             </motion.div>
         </motion.div>
     )
