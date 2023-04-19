@@ -2,7 +2,7 @@ import sharedStyles from "@/app/components/Forms/Core/styles.module.css";
 import {motion} from "framer-motion";
 import React, {useContext} from "react";
 import Loading from "@/app/components/Motions/Loading";
-import {Processing} from "@/app/components/Forms";
+import {Processing} from "@/app/components/Forms/Form";
 import SubmitResult from "@/app/components/Motions/SubmitResult";
 import {TiTick} from "react-icons/ti";
 import {BiError} from "react-icons/bi";

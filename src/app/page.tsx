@@ -8,7 +8,7 @@ import PhoneInfo from "@/app/components/PhoneInfo";
 import MoreServices from "@/app/components/InsuranceInfo/MoreServices";
 import CriticalIllness from "@/app/components/CriticalIllness";
 import SocialGallery from "@/app/components/SocialGallery";
-import Form from "@/app/components/Forms";
+import FormContainer from "@/app/components/Forms";
 import CurrentSectionContext from "@/app/context/CurrentSection";
 
 const links = [
@@ -39,7 +39,7 @@ function Home() {
                     <CriticalIllness/>
                     {/* @ts-expect-error Server Component */}
                     <SocialGallery/>
-                    <Form/>
+                    <FormContainer/>
                 </main>
 
         </CurrentSectionContext>
