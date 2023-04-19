@@ -7,7 +7,7 @@ async function getMediaInfo() {
         , {cache: 'no-store'})
         .then(async res => {
             return (await res.json()).data as Link[]
-        }).catch(e => {
+        }).catch(_ => {
             return undefined
         })
     if (!results) {
