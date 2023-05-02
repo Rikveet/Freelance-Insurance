@@ -6,10 +6,13 @@
     flex-direction: row;
     height: auto;
     width: 100%;
+    max-width: 100vw;
     background-color: white;
     border: #0F1EBB solid;
     border-width: 5px 0;
     padding: 20px 0;
+    box-sizing: border-box;
+    overflow: hidden;
 }
 .ImageContainer{
     width: 20%;
