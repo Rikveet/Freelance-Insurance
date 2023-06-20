@@ -4,7 +4,6 @@
     align-items: center;
     height: 100%;
     width: 280px;
-    transition: background-color ease-in 200ms;
 }
 .BorderContainer{
     display: flex;
@@ -20,11 +19,8 @@
     width: 100%;
     min-width: fit-content;
     border-radius: 10px;
-    transition: all ease-in 200ms;
 }
-.BorderContainer:hover{
-    transform: scale(1.01);
-}
+
 .ImageContainer{
     display: flex;
     flex-direction: column;
@@ -34,7 +30,7 @@
     width: fit-content;
 }
 .Image{
-    width: auto;
+    width: 270px;
     aspect-ratio: 1;
     height: auto;
     border-radius: 10px;
@@ -74,7 +70,6 @@
     color: white;
     text-transform: uppercase;
     background-color: #0F1EBB;
-    transition: background-color ease-in 200ms;
     border: none;
     height: 60px;
     border-radius: 10px;
@@ -83,7 +78,4 @@
     box-sizing: border-box;
     text-decoration: none;
     text-align: center;
-}
-.Button:hover{
-    background-color: #821914;
 }

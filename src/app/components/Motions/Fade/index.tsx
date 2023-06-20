@@ -9,14 +9,19 @@ type props = {
 
 }
 const item = {
-    hidden: {opacity: 0, paddingTop: '20px'},
-    show: {opacity: 1, paddingTop: '0px'}
+    hidden: {opacity: 0},
+    show: {opacity: 1}
 }
 const Fade = ({className, id, children, style}: props) => {
     return (
-            <motion.div {...{id, className, style}} variants={item}>
-                {children}
-            </motion.div>
+        <motion.div {...{id, className, style}} variants={item}
+                    transition={{duration: 0.5, ease: 'easeIn', type: 'tween'}}
+                    initial={'hidden'}
+                    whileInView={'show'}
+                    viewport={{once: true}}
+        >
+            {children}
+        </motion.div>
     )
 }
 export default Fade;

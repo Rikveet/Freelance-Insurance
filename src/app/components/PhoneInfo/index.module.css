@@ -67,7 +67,7 @@
     border: none;
     border-radius: 10px;
     font-weight: bolder;
-    transition: all ease-in 250ms;
+
     cursor: pointer;
     display: flex;
     align-items: center;
@@ -77,6 +77,7 @@
 .Button:hover{
     background: #821914;
     scale: 1.1;
+    transition: 250ms ease-in 0s;
 }
 
 @media screen and (max-width: 970px) {

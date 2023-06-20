@@ -1,9 +1,9 @@
+"use client"
 import {FaInstagramSquare} from "react-icons/fa";
+import InfoButton from "@/app/components/Forms/Core/InfoButton";
 
 const Instagram =  ()=>(
-    <a target={'_blank'} href={'https://www.instagram.com/shevindersidhu/'} rel={"noopener noreferrer"}>
-        <FaInstagramSquare/>
-    </a>
+    <InfoButton Icon={FaInstagramSquare} href={'https://www.instagram.com/shevindersidhu/'} newWindow />
 )
 
 export default Instagram

@@ -20,7 +20,7 @@ export default function RootLayout({children,}: { children: React.ReactNode }) {
         <head>
             <title>Shevinder Sidhu</title>
         </head>
-        <body>
+        <body suppressHydrationWarning={true} >
         {children}
         </body>
         </html>

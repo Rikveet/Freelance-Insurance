@@ -162,10 +162,10 @@ const InstagramCarousel = ({postLinks}: { postLinks: Link[]}) => {
     const [maxPerColumns, setMaxPerColumns] = useState<number>(1)
     const size = useWindowSize()
     useEffect(() => {
-        setMaxPerColumns(Math.floor(postLinks.length / Math.floor(Math.max(size.width / 350, 1))))
+        setMaxPerColumns(Math.floor(postLinks.length / Math.floor(Math.max(size.width / 590, 1))))
     }, [])
     useEffect(() => {
-        setMaxPerColumns(Math.floor(postLinks.length / Math.floor(Math.max(size.width / 350, 1))))
+        setMaxPerColumns(Math.floor(postLinks.length / Math.floor(Math.max(size.width / 590, 1))))
     }, [postLinks, size])
 
     const getColumns = () => {

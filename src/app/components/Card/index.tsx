@@ -5,6 +5,7 @@ import {useContext, useEffect, useState} from "react";
 import {CurrentSection} from "@/app/context/CurrentSection";
 import Fade from '../Motions/Fade';
 import Image from "next/image";
+import {motion, Variants} from "framer-motion";
 
 type props = {
     id: string,
@@ -16,37 +17,59 @@ type props = {
     title: string,
     desc: string
 }
+
+const variants: Variants = {
+    'onHover': {
+        scale: 1.01,
+        transition: {
+            duration: 0.2,
+            type: 'tween',
+            ease: 'easeInOut'
+        }
+    }
+}
+
+const buttonVariants: Variants = {
+    'onHover': {
+        backgroundColor: '#821914'
+    }
+}
+
 const Card = ({id, image, title, desc}: props) => {
     const router = useRouter();
     const {section, setSection} = useContext(CurrentSection);
     const [isActive, setActive] = useState(false);
-    useEffect(()=>{
-        if(section?.replace('#','') === id){
+    useEffect(() => {
+        if (section?.replace('#', '') === id) {
             setActive(true)
-        }else {
+        } else {
             setActive(false)
         }
-    },[id, section])
+    }, [id, section])
     return (
         <Fade key={id}
               className={`${styles.Container}`}
               {...{id}}>
-            <div className={styles.BorderContainer}
-                 style={isActive ? {background: 'rgba(168, 213, 255, 0.25)'} : {}}
-                 onMouseEnter={async () => {
-                     if (id) {
-                         await router.push('#' + id)
-                         setSection('#' + id)
-                     }
-                 }}>
+            <motion.div className={styles.BorderContainer}
+                        variants={variants}
+                        whileHover={'onHover'}
+                        onMouseEnter={async () => {
+                            if (id) {
+                                await router.push('#' + id)
+                                setSection('#' + id)
+                            }
+                        }}>
                 <div className={styles.ImageContainer}>
-                    <Image className={styles.Image} src={image.fileName} alt={image.alt} width={200} height={200} loading={'eager'}/>
+                    <Image className={styles.Image} src={image.fileName} alt={image.alt} width={200} height={200}
+                           loading={'lazy'}/>
                     <p className={styles.ImageDesc}>{image.desc}</p>
                 </div>
                 <p className={styles.Title}>{title}</p>
                 <p className={styles.Desc}>{desc}</p>
-                <a className={styles.Button} href={'#contact'}><p>get free quote</p></a>
-            </div>
+                <motion.a className={styles.Button} href={'#contact'} variants={buttonVariants} whileHover={'onHover'}
+                          transition={{duration: 0.2, type: 'tween', ease: 'easeInOut'}}><p>get free quote</p>
+                </motion.a>
+            </motion.div>
         </Fade>
     )
 }

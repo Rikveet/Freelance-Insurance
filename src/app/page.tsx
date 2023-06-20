@@ -1,15 +1,17 @@
 import styles from "@/app/index.module.css";
 import InfoHeader from "@/app/components/ContactHeader";
 import React from "react";
+import dynamic from 'next/dynamic';
 import Navbar from "@/app/components/Navbar";
 import InsuranceInfo from "@/app/components/InsuranceInfo";
 import HomeCarousel from "@/app/components/Carousel";
-import PhoneInfo from "@/app/components/PhoneInfo";
-import MoreServices from "@/app/components/InsuranceInfo/MoreServices";
-import CriticalIllness from "@/app/components/CriticalIllness";
-import SocialGallery from "@/app/components/SocialGallery";
-import FormContainer from "@/app/components/Forms";
 import CurrentSectionContext from "@/app/context/CurrentSection";
+import PhoneInfo  from "@/app/components/PhoneInfo";
+const MoreServices = dynamic(() => import("@/app/components/InsuranceInfo/MoreServices"));
+const CriticalIllness = dynamic(() => import("@/app/components/CriticalIllness"));
+import SocialGallery from "@/app/components/SocialGallery";
+const FormContainer = dynamic(() => import("@/app/components/Forms"));
+
 
 const links = [
     {text: 'home', sectionID: 'home'},
@@ -26,21 +28,23 @@ const links = [
 ]
 
 function Home() {
+
+
     return (
         <CurrentSectionContext>
 
-                <main className={styles.Main}>
-                    <InfoHeader/>
-                    <Navbar {...{links}}/>
-                    <HomeCarousel/>
-                    <InsuranceInfo/>
-                    <PhoneInfo/>
-                    <MoreServices/>
-                    <CriticalIllness/>
-                    {/* @ts-expect-error Server Component */}
-                    <SocialGallery/>
-                    <FormContainer/>
-                </main>
+            <main className={styles.Main}>
+                <InfoHeader/>
+                <Navbar {...{links}}/>
+                <HomeCarousel/>
+                <InsuranceInfo/>
+                <PhoneInfo/>
+                <MoreServices/>
+                <CriticalIllness/>
+                { /*@ts-ignore*/}
+                <SocialGallery/>
+                <FormContainer/>
+            </main>
 
         </CurrentSectionContext>
     )

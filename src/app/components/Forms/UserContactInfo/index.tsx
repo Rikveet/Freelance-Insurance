@@ -10,10 +10,11 @@ import {Email_Validation, Name_Validation, Phone_Number_Validation} from "../Cor
 
 type props = {
     onSubmit: (userInfo: UserContactInfoT, service: Services) => void,
+    preSelectedService?: Services,
     userInfo: UserContactInfoT | undefined
 }
 
-const UserContactInfo = ({userInfo, onSubmit}: props) => {
+const UserContactInfo = ({userInfo, preSelectedService, onSubmit}: props) => {
     const {handleSubmit, watch, control, formState: {errors}} = useForm<UserContactInfoT>({
         defaultValues:
             userInfo ? userInfo :
@@ -25,11 +26,16 @@ const UserContactInfo = ({userInfo, onSubmit}: props) => {
         ,
         mode: 'all'
     });
-    const [selectedService, setSelectedService] = useState<Services | undefined>();
+    const [selectedService, setSelectedService] = useState<Services | undefined>(preSelectedService);
     const [selectedServiceError, setSelectedServiceError] = useState('')
     const selectedServiceAnimation = useAnimation();
 
     const _onSubmit = async () => {
+        console.log(watch(), preSelectedService)
+        if(preSelectedService){
+            onSubmit(watch(), preSelectedService)
+            return
+        }
         if (!selectedService) {
             setSelectedServiceError('Please select a service!')
             await selectedServiceAnimation.start({x: -10, transition: {duration: 0.2}})
@@ -62,32 +68,35 @@ const UserContactInfo = ({userInfo, onSubmit}: props) => {
                        control={control}
                        rules={Email_Validation()}
                 />
-                <motion.div className={sharedStyles.Group} animate={selectedServiceAnimation}>
-                    <select className={`${sharedStyles.Select} ${inputStyles.Input} `}
-                            defaultValue={''}
-                            value={selectedService}
-                            style={!!selectedService ? {color: "white"} : {}}
-                            onChange={(e) => {
-                                setSelectedServiceError('')
-                                setSelectedService(e.currentTarget.value as Services)
-                            }}
-                    >
-                        <option value='' disabled hidden>Select a service...</option>
-                        <option value="super visa insurance">super visa insurance</option>
-                        <option value="visitor's insurance">visitor&lsquo;s insurance</option>
-                        <option value="life insurance">life insurance</option>
-                        <option value="critical illness insurance">critical illness insurance</option>
-                        <option value="disability insurance">disability insurance</option>
-                        <option value="travel insurance">travel insurance</option>
-                        <option value="resp">resp</option>
-                        <option value="rrsp">rrsp</option>
-                        <option value="tfsa">tfsa</option>
-                        <option value="international student's insurance">international student&lsquo;s insurance
-                        </option>
-                        <option value="mortgage insurance">mortgage insurance</option>
-                    </select>
-                    {selectedServiceError && <span className={sharedStyles.Error}>{selectedServiceError}</span>}
-                </motion.div>
+                {
+                    !preSelectedService ?
+                    <motion.div className={sharedStyles.Group} animate={selectedServiceAnimation}>
+                        <select className={`${sharedStyles.Select} ${inputStyles.Input} `}
+                                defaultValue={''}
+                                value={selectedService}
+                                style={!!selectedService ? {color: "white"} : {}}
+                                onChange={(e) => {
+                                    setSelectedServiceError('')
+                                    setSelectedService(e.currentTarget.value as Services)
+                                }}
+                        >
+                            <option value='' disabled hidden>Select a service...</option>
+                            <option value="super visa insurance">super visa insurance</option>
+                            <option value="visitor's insurance">visitor&lsquo;s insurance</option>
+                            <option value="life insurance">life insurance</option>
+                            <option value="critical illness insurance">critical illness insurance</option>
+                            <option value="disability insurance">disability insurance</option>
+                            <option value="travel insurance">travel insurance</option>
+                            <option value="resp">resp</option>
+                            <option value="rrsp">rrsp</option>
+                            <option value="tfsa">tfsa</option>
+                            <option value="international student's insurance">international student&lsquo;s insurance
+                            </option>
+                            <option value="mortgage insurance">mortgage insurance</option>
+                        </select>
+                        {selectedServiceError && <span className={sharedStyles.Error}>{selectedServiceError}</span>}
+                    </motion.div> : null
+                }
             </div>
             <button className={sharedStyles.SubmitButton}
                     disabled={Object.keys(errors).length>0}>

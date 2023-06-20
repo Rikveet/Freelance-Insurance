@@ -21,6 +21,9 @@ const images = [
         alt: ''
     }
 ]
+
+
+
 const HomeCarousel = () => {
     const [pointer, _setPointer] = useState(1);
     const [lastUpdate, setLastUpdate] = useState(Date.now());
@@ -86,7 +89,7 @@ const HomeCarousel = () => {
                                 src={`/images/home/${getImage(pointer - 1).fileName}.jpg`}
                                 alt={getImage(pointer - 1).alt}
                                 fill={true}
-                                loading={'eager'}
+                                loading={'lazy'}
                                 unoptimized/>
                         </div>
                     </motion.div>
@@ -110,8 +113,7 @@ const HomeCarousel = () => {
                                 }}
                                 src={`/images/home/${getImage(pointer).fileName}.jpg`} alt={getImage(pointer).alt}
                                 fill={true}
-                                loading={'eager'}
-                                priority={true}
+                                loading={'lazy'}
                                 unoptimized/>
                         </div>
                     </motion.div>
@@ -139,7 +141,7 @@ const HomeCarousel = () => {
                                 src={`/images/home/${getImage(pointer + 1).fileName}.jpg`}
                                 alt={getImage(pointer + 1).alt}
                                 fill={true}
-                                loading={'eager'}
+                                loading={'lazy'}
                                 unoptimized/>
                         </div>
                     </motion.div>

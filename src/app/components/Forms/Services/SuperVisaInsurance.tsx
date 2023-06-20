@@ -54,7 +54,8 @@ const SuperVisaInsurance = ({exit, onSubmit}: props) => {
     return (
         <form key={'super_visa_insurance'}
               onSubmit={handleSubmit(() => {
-                  onSubmit(watch())
+                  if (onSubmit)
+                      onSubmit(watch())
               })}>
             <SliderOptions
                 add={{
