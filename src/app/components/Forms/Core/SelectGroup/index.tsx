@@ -34,7 +34,7 @@ function SelectGroup<Name extends FieldValues, FieldType>({label, name, control,
                                 }}
                                 style={!!value ? {color: "white"} : {}}
                                 onChange={(e) => {
-                                    onChange(e.target.value)
+                                    onChange(e)
                                 }}>
                             <option value="" disabled hidden></option>
                             {
