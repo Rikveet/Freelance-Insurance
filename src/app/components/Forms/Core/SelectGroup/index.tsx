@@ -34,7 +34,8 @@ function SelectGroup<Name extends FieldValues, FieldType>({label, name, control,
                                 }}
                                 style={!!value ? {color: "white"} : {}}
                                 onChange={(e) => {
-                                    onChange(e)
+                                    // @ts-ignore
+                                    onChange(e.target.value)
                                 }}>
                             <option value="" disabled hidden></option>
                             {

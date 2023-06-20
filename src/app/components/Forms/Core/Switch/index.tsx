@@ -37,6 +37,7 @@ function Switch<Name extends FieldValues, FieldType>({label, name, control, opti
                                 justifyContent: 'flex-end'
                             }:{justifyContent: 'flex-start'}}
                             onClick={() => {
+                                // @ts-ignore
                                 field.onChange(isOn() ? off.value : on.value)
                             }}>
                             <motion.p className={styles.Text}
