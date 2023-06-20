@@ -69,6 +69,7 @@ const TravelInsurance = ({exit, onSubmit}: props) => {
                                         let dateUpdate = {}
                                         if (startDate) {
                                             dateUpdate = {'date of departure': startDate}
+                                            // @ts-ignore
                                             field.onChange()
                                         }
                                         if (endDate) {
@@ -81,6 +82,7 @@ const TravelInsurance = ({exit, onSubmit}: props) => {
                                             }
                                         }
                                         if (dateUpdate) {
+                                            // @ts-ignore
                                             field.onChange(dateUpdate)
                                         }
                                     }}
