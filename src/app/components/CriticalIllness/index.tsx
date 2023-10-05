@@ -4,6 +4,8 @@ import styles from './index.module.css';
 import {useRouter} from "next/navigation";
 import {useContext} from "react";
 import {CurrentSection} from "@/app/context/CurrentSection";
+import CriticalIllnessImg from "@/app/assets/images/criticalIllness.webp";
+import Image from "next/image";
 
 const FadeIn = {
     'hidden': {
@@ -49,14 +51,18 @@ const CriticalIllness = () => {
              }}
         >
             <div className={styles.ImageContainer}>
-                <motion.img className={styles.Image}
-                            src={'/images/criticalIllness.jpg'}
-                            alt={'critical illness'}
-                            variants={FadeIn}
-                            initial={'hidden'}
-                            whileInView={'show'}
-                            viewport={{once: true}}
-                />
+                <motion.div
+                    variants={FadeIn}
+                    initial={'hidden'}
+                    whileInView={'show'}
+                    viewport={{once: true}}
+                >
+                    <Image
+                        className={styles.Image}
+                        src={CriticalIllnessImg}
+                        alt={'critical illness'}
+                    />
+                </motion.div>
             </div>
             <div className={styles.InfoContainer}>
                 <motion.div className={styles.Name} variants={SlideRight} initial={'middle'} whileInView={'right'}

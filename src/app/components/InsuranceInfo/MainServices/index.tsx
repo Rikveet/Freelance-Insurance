@@ -1,13 +1,17 @@
 import Card from "@/app/components/Card";
 import React from "react";
 import ServicesContainer from "@/app/components/InsuranceInfo/ServicesContainer";
+import SuperVisaImg from "@/app/assets/images/cards/super_visa.webp";
+import VisitorInsuranceImg from "@/app/assets/images/cards/visitor_insurance.webp";
+import LifeInsuranceImg from "@/app/assets/images/cards/life_insurance.webp";
+
 
 const MainServices = () => {
     return (
         <ServicesContainer>
             <Card id={'super_insurance'}
                   image={{
-                      fileName: '/images/cards/super_visa.jpg',
+                      file: SuperVisaImg,
                       alt: 'super visa',
                       desc: 'for parents & grandparents'
                   }}
@@ -16,7 +20,7 @@ const MainServices = () => {
             />
             <Card id={'visitor_insurance'}
                   image={{
-                      fileName: '/images/cards/visitor_insurance.jpg',
+                      file: VisitorInsuranceImg,
                       alt: "visitor's insurance",
                       desc: 'for visitors to canada'
                   }}
@@ -25,7 +29,7 @@ const MainServices = () => {
             />
             <Card id={'life_insurance'}
                   image={{
-                      fileName: '/images/cards/life_insurance.jpg',
+                      file: LifeInsuranceImg,
                       alt: 'life insurance',
                       desc: 'for you & your loved ones'
                   }}

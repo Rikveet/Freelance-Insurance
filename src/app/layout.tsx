@@ -1,6 +1,6 @@
 import './globals.css'
 import React from "react";
-import {Karla, Vidaloka, Hind, Bungee_Shade} from 'next/font/google';
+import {Bungee_Shade, Hind, Karla, Vidaloka} from 'next/font/google';
 
 const karla = Karla({weight: "200", display: 'swap', subsets: ["latin"], variable: '--karla'});
 const vidaloka = Vidaloka({weight: '400', display: 'swap', subsets: ["latin"], variable: '--vidaloka'});
@@ -18,9 +18,14 @@ export default function RootLayout({children,}: { children: React.ReactNode }) {
         <html lang="en"
               className={`${karla.variable} ${vidaloka.variable} ${hind.variable} ${bungeeShade.variable}`}>
         <head>
-            <title>Shevinder Sidhu</title>
+            <title>{metadata.title}</title>
+            <meta name={'description'}>{metadata.description}</meta>
+            <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"/>
+            <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png"/>
+            <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"/>
+            <link rel="manifest" href="/manifest.json"/>
         </head>
-        <body suppressHydrationWarning={true} >
+        <body suppressHydrationWarning={true}>
         {children}
         </body>
         </html>

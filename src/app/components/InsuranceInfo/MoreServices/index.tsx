@@ -3,6 +3,9 @@ import React from "react";
 import ServicesContainer from "@/app/components/InsuranceInfo/ServicesContainer";
 import Card from "@/app/components/Card";
 import styles from './index.module.css';
+import DisabilityInsuranceImg from "@/app/assets/images/cards/disability_insurance.webp";
+import TravelInsuranceImg from "@/app/assets/images/cards/travel_insurance.webp";
+import TaxImg from "@/app/assets/images/cards/tax.webp";
 
 const MoreServices = () => {
     return (
@@ -10,7 +13,7 @@ const MoreServices = () => {
             <ServicesContainer>
                 <Card id={'disability_insurance'}
                       image={{
-                          fileName: '/images/cards/disability_insurance.jpg',
+                          file: DisabilityInsuranceImg,
                           alt: 'disability insurance',
                           desc: 'homeowner'
                       }}
@@ -19,7 +22,7 @@ const MoreServices = () => {
                       />
                 <Card id={'travel_insurance'}
                       image={{
-                          fileName: '/images/cards/travel_insurance.jpg',
+                          file: TravelInsuranceImg,
                           alt: "travel insurance",
                           desc: 'worry-free travel'
                       }}
@@ -28,7 +31,7 @@ const MoreServices = () => {
                      />
                 <Card id={'tax'}
                       image={{
-                          fileName: '/images/cards/tax.jpg',
+                          file: TaxImg,
                           alt: 'tax',
                           desc: 'tax agent'
                       }}

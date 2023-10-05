@@ -6,6 +6,9 @@ import sharedStyles from "@/app/components/Forms/Core/styles.module.css";
 import styles from './index.module.css';
 import cardStyles from '@/app/components/Card/index.module.css';
 import Image from "next/image";
+import BackgroundImg from "@/app/assets/images/map.webp";
+import SuperVisaImg from "@/app/assets/images/cards/super_visa.webp";
+
 const SupervisaPageContent = () => {
     // some of the code was extracted from the form section
 
@@ -17,7 +20,7 @@ const SupervisaPageContent = () => {
                         <p className={cardStyles.Title}>Super Visa Insurance</p>
                         <Image
                             className={cardStyles.Image}
-                            src={'/images/cards/super_visa.jpg'}
+                            src={SuperVisaImg}
                             alt={'super visa image'}
                             loading={'eager'}
                             priority
@@ -36,7 +39,7 @@ const SupervisaPageContent = () => {
                 <div className={styles.Form}>
                     <div className={styles.Background}>
                         <div className={styles.BackgroundBlur}/>
-                        <Image className={styles.BackgroundImg} src="/images/map.png" alt="background image"
+                        <Image className={styles.BackgroundImg} src={BackgroundImg} alt="background image"
                                width={2000} height={2000}/>
                     </div>
                     <div className={sharedStyles.Form}>

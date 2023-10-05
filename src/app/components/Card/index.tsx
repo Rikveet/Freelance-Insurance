@@ -4,13 +4,14 @@ import {useRouter} from "next/navigation";
 import {useContext, useEffect, useState} from "react";
 import {CurrentSection} from "@/app/context/CurrentSection";
 import Fade from '../Motions/Fade';
-import Image from "next/image";
+import Image, {StaticImageData} from "next/image";
 import {motion, Variants} from "framer-motion";
+
 
 type props = {
     id: string,
     image: {
-        fileName: string,
+        file: StaticImageData,
         alt: string,
         desc: string,
     },
@@ -60,7 +61,7 @@ const Card = ({id, image, title, desc}: props) => {
                             }
                         }}>
                 <div className={styles.ImageContainer}>
-                    <Image className={styles.Image} src={image.fileName} alt={image.alt} width={200} height={200}
+                    <Image className={styles.Image} src={image.file} alt={image.alt} width={200} height={200}
                            loading={'lazy'}/>
                     <p className={styles.ImageDesc}>{image.desc}</p>
                 </div>

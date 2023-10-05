@@ -6,18 +6,21 @@ import {GrNext} from "react-icons/gr";
 import {AnimatePresence, motion} from "framer-motion";
 import {useInterval} from "usehooks-ts";
 import Image from "next/image";
+import SuperVisaImg from "@/app/assets/images/home/super_visa.webp";
+import RespRrspTfsa from "@/app/assets/images/home/resp_rrsp_tfsa.webp";
+import LifeInsuranceImg from "@/app/assets/images/home/life_insurance.webp";
 
 const images = [
     {
-        fileName: 'super_visa',
+        file: SuperVisaImg,
         alt: ''
     },
     {
-        fileName: 'resp_rrsp_tfsa',
+        file: RespRrspTfsa,
         alt: ''
     },
     {
-        fileName: 'life_insurance',
+        file: LifeInsuranceImg,
         alt: ''
     }
 ]
@@ -66,7 +69,7 @@ const HomeCarousel = () => {
             <div className={styles.Carousel}>
                 <AnimatePresence initial={false}>
                     <motion.div
-                        key={getImage(pointer - 1).fileName}
+                        key={'pointer - 1'}
                         className={styles.Image}
                         initial={{x: '0%', zIndex: 0, width: '80%', filter: 'blur(0)', scale: 0.75}}
                         animate={{x: '-95%', zIndex: 1, width: '75%', filter: 'blur(10px)', scale: 0.75}}
@@ -86,7 +89,7 @@ const HomeCarousel = () => {
                                 onMouseLeave={() => {
                                     setPlaying(true)
                                 }}
-                                src={`/images/home/${getImage(pointer - 1).fileName}.jpg`}
+                                src={getImage(pointer - 1).file}
                                 alt={getImage(pointer - 1).alt}
                                 fill={true}
                                 loading={'lazy'}
@@ -94,7 +97,7 @@ const HomeCarousel = () => {
                         </div>
                     </motion.div>
                     <motion.div
-                        key={getImage(pointer).fileName}
+                        key={'pointer'}
                         className={styles.Image}
                         initial={{x: '100%', zIndex: 0, width: '75%', filter: 'blur(10px)', scale: 0.75}}
                         animate={{x: '0%', zIndex: 2, width: '80%', filter: 'blur(0)', scale: 1}}
@@ -111,14 +114,14 @@ const HomeCarousel = () => {
                                 onMouseLeave={() => {
                                     setPlaying(true)
                                 }}
-                                src={`/images/home/${getImage(pointer).fileName}.jpg`} alt={getImage(pointer).alt}
+                                src={getImage(pointer).file} alt={getImage(pointer).alt}
                                 fill={true}
                                 loading={'lazy'}
                                 unoptimized/>
                         </div>
                     </motion.div>
                     <motion.div
-                        key={getImage(pointer + 1).fileName}
+                        key={'pointer + 1'}
                         className={styles.Image}
                         initial={{x: '190%', zIndex: 0, width: '75%', filter: 'blur(10px)', scale: 0.75}}
                         animate={{x: '95%', zIndex: 1, width: '75%', filter: 'blur(10px)', scale: 0.75}}
@@ -138,7 +141,7 @@ const HomeCarousel = () => {
                                 onMouseLeave={() => {
                                     setPlaying(true)
                                 }}
-                                src={`/images/home/${getImage(pointer + 1).fileName}.jpg`}
+                                src={getImage(pointer + 1).file}
                                 alt={getImage(pointer + 1).alt}
                                 fill={true}
                                 loading={'lazy'}
