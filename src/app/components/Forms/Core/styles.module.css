@@ -124,7 +124,7 @@
     font-size: 11px;
     color: white;
     position: absolute;
-    left: 10px;
+    left: 0;
     bottom: 0;
     transform: translateY(50%);
     transition: top ease-in 200ms;

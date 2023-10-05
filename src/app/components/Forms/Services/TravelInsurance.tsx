@@ -7,11 +7,7 @@ import "react-datepicker/dist/react-datepicker.css";
 import {props} from "@/app/components/Forms/Services/DataTypes";
 import InputContainer from "@/app/components/Forms/Core/InputContainer";
 import Submit from "@/app/components/Forms/Core/Submit";
-import {
-    Age_Validation,
-    Date_Picker_Validation,
-    Destination_Validation
-} from "@/app/components/Forms/Core/Validation";
+import {Age_Validation, Date_Picker_Validation, Destination_Validation} from "@/app/components/Forms/Core/Validation";
 
 export type Data = {
     age: number,
@@ -90,17 +86,15 @@ const TravelInsurance = ({exit, onSubmit}: props) => {
                                     endDate={field.value ? field.value['date of return'] : undefined}
                                     selectsRange
                                     inline
-                                >
-                                    {
-                                        fieldState.error &&
-                                        <span className={sharedStyles.Error}>
-                                        {
-                                            fieldState.error.message
-                                        }
+                                />
+                                {
+                                    fieldState.error &&
+                                    <span className={sharedStyles.Error} style={{left: "50%", transform: "translate(-50%, 50%)", width: "210px"}}>
+                                            {
+                                                fieldState.error.message
+                                            }
                                     </span>
-                                    }
-                                </ReactDatePicker>
-
+                                }
                             </>
 
                         )}
