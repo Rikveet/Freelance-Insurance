@@ -69,7 +69,7 @@ const HomeCarousel = () => {
             <div className={styles.Carousel}>
                 <AnimatePresence initial={false}>
                     <motion.div
-                        key={'pointer - 1'}
+                        key={ `${getImage(pointer - 1).file.src}` }
                         className={styles.Image}
                         initial={{x: '0%', zIndex: 0, width: '80%', filter: 'blur(0)', scale: 0.75}}
                         animate={{x: '-95%', zIndex: 1, width: '75%', filter: 'blur(10px)', scale: 0.75}}
@@ -97,7 +97,7 @@ const HomeCarousel = () => {
                         </div>
                     </motion.div>
                     <motion.div
-                        key={'pointer'}
+                        key={`${getImage(pointer).file.src}`}
                         className={styles.Image}
                         initial={{x: '100%', zIndex: 0, width: '75%', filter: 'blur(10px)', scale: 0.75}}
                         animate={{x: '0%', zIndex: 2, width: '80%', filter: 'blur(0)', scale: 1}}
@@ -121,7 +121,7 @@ const HomeCarousel = () => {
                         </div>
                     </motion.div>
                     <motion.div
-                        key={'pointer + 1'}
+                        key={`${getImage(pointer + 1).file.src}`}
                         className={styles.Image}
                         initial={{x: '190%', zIndex: 0, width: '75%', filter: 'blur(10px)', scale: 0.75}}
                         animate={{x: '95%', zIndex: 1, width: '75%', filter: 'blur(10px)', scale: 0.75}}
